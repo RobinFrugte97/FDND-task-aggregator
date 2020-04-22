@@ -1,0 +1,29 @@
+{
+  "name": "task-aggregation",
+  "version": "0.1.0",
+  "description": "Aggregates the all tasks and task descriptions from organisation fdnd-task",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fdnd/task-aggregation.git"
+  },
+  "keywords": [
+    "fdnd",
+    "task"
+  ],
+  "author": "Justus Sturkenboom <j.p.sturkenboom@hva.nl>",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/fdnd/task-aggregation/issues"
+  },
+  "homepage": "https://github.com/fdnd/task-aggregation#readme",
+  "dependencies": {
+    "@octokit/graphql": "^4.3.1",
+    "dotenv": "^8.2.0",
+    "front-matter": "^3.1.0"
+  }
+}
