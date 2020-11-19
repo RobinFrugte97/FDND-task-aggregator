@@ -52,4 +52,5 @@ graphqlWithAuth(`{
   })
   .finally(() => {
     console.log(taskList)
+    console.log('Done and done...')
   })
