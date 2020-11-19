@@ -42,7 +42,7 @@ graphqlWithAuth(`{
       taskList.push({
         ...fm(task.description.text).attributes,
         repository: task.name,
-        topics: task.repositoryTopics.edges.map(t => t.node.topic.name),
+        topics: task.repositoryTopics.edges.map(edge => edge.node.topic.name),
         url: task.url
       })
     })
