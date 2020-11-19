@@ -18,11 +18,21 @@ graphqlWithAuth(`{
       nodes {
         name
         url
-        description:object(expression: "master:.description") {
+        description: object(expression: "master:.description") {
           ... on Blob {
             text
           }
         }
+        repositoryTopics(first: 20) {
+          edges {
+            node {
+              topic {
+                name
+              }
+            }
+          }
+        }
+        forkCount
       }
     }
   }
@@ -32,6 +42,7 @@ graphqlWithAuth(`{
       taskList.push({
         ...fm(task.description.text).attributes,
         repository: task.name,
+        topics: task.repositoryTopics.edges.map(t => t.node.topic.name),
         url: task.url
       })
     })
