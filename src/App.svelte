@@ -1,8 +1,11 @@
 <script>
 	import { onMount } from "svelte"
+	import { searchList } from "../public/js/searchList.js"
 
 	import TaskList from "./components/TaskList.svelte"
+	import TaskSearch from "./components/TaskSearch.svelte"
 
+	let searchTerm = ""
 	let taskList = [] /*Original copy of the data.*/
 	let displayTaskList = [] /*Copy of the data that is used to render the tasks.*/
 
@@ -18,6 +21,13 @@
 
 <main>
 	<h1>FDND Task Overview</h1>
+	<!--Tasksearch component, with a function the fires on every change of the value.-->
+	<TaskSearch bind:searchTerm
+					on:updateSearch={
+						() => {
+							displayTaskList = searchList(taskList, searchTerm)
+						}
+					}/>
 	<!--Tasklist component, with a copy of the task data bound to it.-->
 	<TaskList bind:displayTaskList/>
 </main>
