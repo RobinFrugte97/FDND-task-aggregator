@@ -5,7 +5,9 @@ html, body {
 }
 
 body {
-	color: #333;
+	background: linear-gradient(to bottom right, #ffaefd, #2361ec);
+	background-attachment: fixed;
+    background-repeat: no-repeat;
 	margin: 0;
 	padding: 8px;
 	box-sizing: border-box;

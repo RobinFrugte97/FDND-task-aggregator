@@ -1,30 +1,41 @@
 <script>
-	export let name;
+	import { onMount } from "svelte"
+
+	import TaskList from "./components/TaskList.svelte"
+
+	let taskList = [] /*Original copy of the data.*/
+	let displayTaskList = [] /*Copy of the data that is used to render the tasks.*/
+
+	/*When App.svelte mounts, this function to fetch the data will run.*/
+	onMount(async () => {
+		const dataResponse = await fetch('data.json')
+		taskList = await dataResponse.json()
+
+		displayTaskList = taskList
+		console.log(displayTaskList)
+	})
 </script>
 
 <main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	<h1>FDND Task Overview</h1>
+	<!--Tasklist component, with a copy of the task data bound to it.-->
+	<TaskList bind:displayTaskList/>
 </main>
 
 <style>
 	main {
-		text-align: center;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 		padding: 1em;
-		max-width: 240px;
 		margin: 0 auto;
 	}
 
 	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
+		color: white;
+		font-family: sans-serif;
 		font-size: 4em;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
+		font-weight: bold;
+		margin-top: 0em;
 	}
 </style>

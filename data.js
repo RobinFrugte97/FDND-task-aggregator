@@ -4,6 +4,7 @@ require('dotenv').config()
 
 const { graphql } = require('@octokit/graphql')
 const fm = require('front-matter')
+const fs = require('fs')
 
 const taskList = []
 const graphqlWithAuth = graphql.defaults({
@@ -14,7 +15,7 @@ const graphqlWithAuth = graphql.defaults({
 
 graphqlWithAuth(`{
   organization(login: "fdnd-task") {
-    repositories(first: 100, orderBy: {field: NAME, direction: ASC}) {
+    repositories(first: 100, orderBy: {field: NAME, direction: DESC}) {
       nodes {
         name
         url
@@ -51,5 +52,13 @@ graphqlWithAuth(`{
     console.log('GitHub API Request failed: ', error.request, '\n', error.message)
   })
   .finally(() => {
-    console.log(taskList)
+    /* Write the GraphQL result to a json-file, to be fetched inside the App.svelte component. */
+    fs.writeFile('public/data.json', 
+                  JSON.stringify(taskList),
+                  function (err) {
+                    if (err) {
+                      console.error('Crap happens');
+                    }
+                  }
+    );
   })
