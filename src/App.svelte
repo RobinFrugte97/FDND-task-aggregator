@@ -13,9 +13,8 @@
 	onMount(async () => {
 		const dataResponse = await fetch('data.json')
 		taskList = await dataResponse.json()
-
-		displayTaskList = taskList
-		console.log(displayTaskList)
+		/* Sort taskList in alphabetical order. */
+		displayTaskList = taskList.sort((a, b) => a.title.localeCompare(b.title))
 	})
 </script>
 
