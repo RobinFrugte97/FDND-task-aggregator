@@ -1,11 +1,11 @@
 <script>
-    export let tagList
+    export let task
 </script>
 
 <h4>Tags:</h4>
 <ul>
     <!--Svelte each-block looping through the tags.-->
-    {#each tagList as tag}
+    {#each task.tags as tag}
         <li>{tag}</li>
     {:else}
         <p>No tags</p>

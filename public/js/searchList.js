@@ -1,9 +1,19 @@
+// Function that loops through a task's taglist to try and find a match.
+function findTag(tags, query) {
+    let foundTag = false
+    tags.forEach(tag => {
+        if (tag.toLowerCase().match(query)) {
+            return foundTag = true
+        }
+    })
+    return foundTag
+}
+
+// Function that checks if the user input matches either the title, description or the tags of a task.
 export function searchList(list, query) {
     return list.filter(item => {
-        return (
-            /* Return every task of which the title and/or the description matches the search query. */
-            item.title.toLowerCase().match(query.toLowerCase()) ||
-            item.description.toLowerCase().match(query.toLowerCase())
-        )
+        if (findTag(item.tags, query.toLowerCase()) || item.title.toLowerCase().match(query.toLowerCase()) || item.description.toLowerCase().match(query.toLowerCase())) {
+            return true
+        }
     })
-}
+} 
