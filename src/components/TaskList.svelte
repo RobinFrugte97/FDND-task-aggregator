@@ -9,7 +9,7 @@
     feeds each entry to a "Task" component-->
     {#each displayTaskList as task}
 	    <!--Task component, with a copy of the task data.-->
-        <Task {task} />
+        <Task bind:task />
     {:else}
         <!--This "else" is shown if displayTaskList is empty or otherwise not compatible 
         with the each-block.-->

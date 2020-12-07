@@ -421,12 +421,23 @@ var app = (function () {
         $inject_state() { }
     }
 
+    // Function that loops through a task's taglist to try and find a match.
+    function findTag(tags, query) {
+        let foundTag = false;
+        tags.forEach(tag => {
+            if (tag.toLowerCase().match(query)) {
+                return foundTag = true
+            }
+        });
+        return foundTag
+    }
+
+    // Function that checks if the user input matches either the title, description or the tags of a task.
     function searchList(list, query) {
         return list.filter(item => {
-            return (
-                /* Return every task of which the title matches the search query. */
-                item.title.toLowerCase().match(query.toLowerCase())
-            )
+            if (findTag(item.tags, query.toLowerCase()) || item.title.toLowerCase().match(query.toLowerCase()) || item.description.toLowerCase().match(query.toLowerCase())) {
+                return true
+            }
         })
     }
 
@@ -448,7 +459,7 @@ var app = (function () {
     		c: function create() {
     			p = element("p");
     			p.textContent = "No tags";
-    			add_location(p, file, 10, 8, 198);
+    			add_location(p, file, 10, 8, 197);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -469,7 +480,7 @@ var app = (function () {
     	return block;
     }
 
-    // (8:4) {#each tagList as tag}
+    // (8:4) {#each task.tags as tag}
     function create_each_block(ctx) {
     	let li;
     	let t_value = /*tag*/ ctx[1] + "";
@@ -480,14 +491,14 @@ var app = (function () {
     			li = element("li");
     			t = text(t_value);
     			attr_dev(li, "class", "svelte-1msmrhj");
-    			add_location(li, file, 8, 8, 161);
+    			add_location(li, file, 8, 8, 160);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
     			append_dev(li, t);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*tagList*/ 1 && t_value !== (t_value = /*tag*/ ctx[1] + "")) set_data_dev(t, t_value);
+    			if (dirty & /*task*/ 1 && t_value !== (t_value = /*tag*/ ctx[1] + "")) set_data_dev(t, t_value);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(li);
@@ -498,7 +509,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(8:4) {#each tagList as tag}",
+    		source: "(8:4) {#each task.tags as tag}",
     		ctx
     	});
 
@@ -509,7 +520,7 @@ var app = (function () {
     	let h4;
     	let t1;
     	let ul;
-    	let each_value = /*tagList*/ ctx[0];
+    	let each_value = /*task*/ ctx[0].tags;
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -539,9 +550,9 @@ var app = (function () {
     			}
 
     			attr_dev(h4, "class", "svelte-1msmrhj");
-    			add_location(h4, file, 4, 0, 47);
+    			add_location(h4, file, 4, 0, 44);
     			attr_dev(ul, "class", "svelte-1msmrhj");
-    			add_location(ul, file, 5, 0, 63);
+    			add_location(ul, file, 5, 0, 60);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -560,8 +571,8 @@ var app = (function () {
     			}
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*tagList*/ 1) {
-    				each_value = /*tagList*/ ctx[0];
+    			if (dirty & /*task*/ 1) {
+    				each_value = /*task*/ ctx[0].tags;
     				validate_each_argument(each_value);
     				let i;
 
@@ -620,34 +631,34 @@ var app = (function () {
     function instance($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("Tags", slots, []);
-    	let { tagList } = $$props;
-    	const writable_props = ["tagList"];
+    	let { task } = $$props;
+    	const writable_props = ["task"];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Tags> was created with unknown prop '${key}'`);
     	});
 
     	$$self.$$set = $$props => {
-    		if ("tagList" in $$props) $$invalidate(0, tagList = $$props.tagList);
+    		if ("task" in $$props) $$invalidate(0, task = $$props.task);
     	};
 
-    	$$self.$capture_state = () => ({ tagList });
+    	$$self.$capture_state = () => ({ task });
 
     	$$self.$inject_state = $$props => {
-    		if ("tagList" in $$props) $$invalidate(0, tagList = $$props.tagList);
+    		if ("task" in $$props) $$invalidate(0, task = $$props.task);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [tagList];
+    	return [task];
     }
 
     class Tags extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance, create_fragment, safe_not_equal, { tagList: 0 });
+    		init(this, options, instance, create_fragment, safe_not_equal, { task: 0 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -659,16 +670,16 @@ var app = (function () {
     		const { ctx } = this.$$;
     		const props = options.props || {};
 
-    		if (/*tagList*/ ctx[0] === undefined && !("tagList" in props)) {
-    			console.warn("<Tags> was created without expected prop 'tagList'");
+    		if (/*task*/ ctx[0] === undefined && !("task" in props)) {
+    			console.warn("<Tags> was created without expected prop 'task'");
     		}
     	}
 
-    	get tagList() {
+    	get task() {
     		throw new Error("<Tags>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
-    	set tagList(value) {
+    	set task(value) {
     		throw new Error("<Tags>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
@@ -687,16 +698,25 @@ var app = (function () {
     	let t2;
     	let t3;
     	let tags;
+    	let updating_task;
     	let t4;
     	let a;
     	let t5;
     	let a_href_value;
     	let current;
 
-    	tags = new Tags({
-    			props: { tagList: /*tagList*/ ctx[1] },
-    			$$inline: true
-    		});
+    	function tags_task_binding(value) {
+    		/*tags_task_binding*/ ctx[1].call(null, value);
+    	}
+
+    	let tags_props = {};
+
+    	if (/*task*/ ctx[0] !== void 0) {
+    		tags_props.task = /*task*/ ctx[0];
+    	}
+
+    	tags = new Tags({ props: tags_props, $$inline: true });
+    	binding_callbacks.push(() => bind(tags, "task", tags_task_binding));
 
     	const block = {
     		c: function create() {
@@ -712,12 +732,12 @@ var app = (function () {
     			a = element("a");
     			t5 = text("Link to Github Repo");
     			attr_dev(h3, "class", "svelte-pgwoq5");
-    			add_location(h3, file$1, 7, 4, 121);
-    			add_location(p, file$1, 8, 4, 148);
+    			add_location(h3, file$1, 7, 4, 94);
+    			add_location(p, file$1, 8, 4, 121);
     			attr_dev(a, "href", a_href_value = /*task*/ ctx[0].url);
-    			add_location(a, file$1, 11, 4, 260);
+    			add_location(a, file$1, 11, 4, 236);
     			attr_dev(li, "class", "svelte-pgwoq5");
-    			add_location(li, file$1, 6, 0, 111);
+    			add_location(li, file$1, 6, 0, 84);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -739,6 +759,15 @@ var app = (function () {
     		p: function update(ctx, [dirty]) {
     			if ((!current || dirty & /*task*/ 1) && t0_value !== (t0_value = /*task*/ ctx[0].title + "")) set_data_dev(t0, t0_value);
     			if ((!current || dirty & /*task*/ 1) && t2_value !== (t2_value = /*task*/ ctx[0].description + "")) set_data_dev(t2, t2_value);
+    			const tags_changes = {};
+
+    			if (!updating_task && dirty & /*task*/ 1) {
+    				updating_task = true;
+    				tags_changes.task = /*task*/ ctx[0];
+    				add_flush_callback(() => updating_task = false);
+    			}
+
+    			tags.$set(tags_changes);
 
     			if (!current || dirty & /*task*/ 1 && a_href_value !== (a_href_value = /*task*/ ctx[0].url)) {
     				attr_dev(a, "href", a_href_value);
@@ -774,29 +803,32 @@ var app = (function () {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("Task", slots, []);
     	let { task } = $$props;
-    	let tagList = task.tags;
     	const writable_props = ["task"];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Task> was created with unknown prop '${key}'`);
     	});
 
+    	function tags_task_binding(value) {
+    		task = value;
+    		$$invalidate(0, task);
+    	}
+
     	$$self.$$set = $$props => {
     		if ("task" in $$props) $$invalidate(0, task = $$props.task);
     	};
 
-    	$$self.$capture_state = () => ({ Tags, task, tagList });
+    	$$self.$capture_state = () => ({ Tags, task });
 
     	$$self.$inject_state = $$props => {
     		if ("task" in $$props) $$invalidate(0, task = $$props.task);
-    		if ("tagList" in $$props) $$invalidate(1, tagList = $$props.tagList);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [task, tagList];
+    	return [task, tags_task_binding];
     }
 
     class Task extends SvelteComponentDev {
@@ -833,7 +865,9 @@ var app = (function () {
 
     function get_each_context$1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[1] = list[i];
+    	child_ctx[2] = list[i];
+    	child_ctx[3] = list;
+    	child_ctx[4] = i;
     	return child_ctx;
     }
 
@@ -845,7 +879,7 @@ var app = (function () {
     		c: function create() {
     			p = element("p");
     			p.textContent = "Loading...";
-    			add_location(p, file$2, 15, 8, 484);
+    			add_location(p, file$2, 15, 8, 487);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -869,12 +903,21 @@ var app = (function () {
     // (10:4) {#each displayTaskList as task}
     function create_each_block$1(ctx) {
     	let task;
+    	let updating_task;
     	let current;
 
-    	task = new Task({
-    			props: { task: /*task*/ ctx[1] },
-    			$$inline: true
-    		});
+    	function task_task_binding(value) {
+    		/*task_task_binding*/ ctx[1].call(null, value, /*task*/ ctx[2], /*each_value*/ ctx[3], /*task_index*/ ctx[4]);
+    	}
+
+    	let task_props = {};
+
+    	if (/*task*/ ctx[2] !== void 0) {
+    		task_props.task = /*task*/ ctx[2];
+    	}
+
+    	task = new Task({ props: task_props, $$inline: true });
+    	binding_callbacks.push(() => bind(task, "task", task_task_binding));
 
     	const block = {
     		c: function create() {
@@ -884,9 +927,16 @@ var app = (function () {
     			mount_component(task, target, anchor);
     			current = true;
     		},
-    		p: function update(ctx, dirty) {
+    		p: function update(new_ctx, dirty) {
+    			ctx = new_ctx;
     			const task_changes = {};
-    			if (dirty & /*displayTaskList*/ 1) task_changes.task = /*task*/ ctx[1];
+
+    			if (!updating_task && dirty & /*displayTaskList*/ 1) {
+    				updating_task = true;
+    				task_changes.task = /*task*/ ctx[2];
+    				add_flush_callback(() => updating_task = false);
+    			}
+
     			task.$set(task_changes);
     		},
     		i: function intro(local) {
@@ -1052,6 +1102,11 @@ var app = (function () {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<TaskList> was created with unknown prop '${key}'`);
     	});
 
+    	function task_task_binding(value, task, each_value, task_index) {
+    		each_value[task_index] = value;
+    		$$invalidate(0, displayTaskList);
+    	}
+
     	$$self.$$set = $$props => {
     		if ("displayTaskList" in $$props) $$invalidate(0, displayTaskList = $$props.displayTaskList);
     	};
@@ -1066,7 +1121,7 @@ var app = (function () {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [displayTaskList];
+    	return [displayTaskList, task_task_binding];
     }
 
     class TaskList extends SvelteComponentDev {
