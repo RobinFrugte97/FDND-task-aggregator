@@ -1,6 +1,7 @@
 <script>
 	import { onMount } from "svelte"
 	import { searchList } from "../public/js/searchList.js"
+	import { getTaskTitles } from "../public/js/getTaskTitles.js"
 
 	import TaskList from "./components/TaskList.svelte"
 	import TaskSearch from "./components/TaskSearch.svelte"
@@ -8,13 +9,16 @@
 	let searchTerm = ""
 	let taskList = [] /*Original copy of the data.*/
 	let displayTaskList = [] /*Copy of the data that is used to render the tasks.*/
-
+	let taskTitles = []
 	/*When App.svelte mounts, this function to fetch the data will run.*/
 	onMount(async () => {
 		const dataResponse = await fetch('data.json')
 		taskList = await dataResponse.json()
 
 		displayTaskList = taskList
+		// Create a list of titles for the datalist search
+		taskTitles = getTaskTitles(displayTaskList)
+
 		console.log(displayTaskList)
 	})
 </script>
@@ -22,7 +26,7 @@
 <main>
 	<h1>FDND Task Overview</h1>
 	<!--Tasksearch component, with a function the fires on every change of the value.-->
-	<TaskSearch bind:searchTerm
+	<TaskSearch bind:searchTerm bind:taskTitles
 					on:updateSearch={
 						() => {
 							displayTaskList = searchList(taskList, searchTerm)
