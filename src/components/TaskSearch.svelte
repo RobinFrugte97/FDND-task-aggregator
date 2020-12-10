@@ -2,17 +2,31 @@
     import {createEventDispatcher} from "svelte"
     const dispatcher = createEventDispatcher()
     export let searchTerm
+    export let taskTitles
+    console.log(taskTitles)
+
 </script>
 
 <label for="searchBar">Search for a task:</label>
 <input
-    type="text"
+    type="search"
     id="searchBar"
     aria-label="Search Input" 
+    list="searchOptions"
     bind:value={searchTerm}
     on:keyup={() => {
         dispatcher('updateSearch')
 }}/>
+<datalist id="searchOptions">
+    {#if searchTerm === ""}
+        <option></option>
+    {:else}
+        {#each taskTitles as title}
+            <option value={title}/>
+        {/each}
+
+    {/if}
+</datalist>
 
 <style>
     label {
