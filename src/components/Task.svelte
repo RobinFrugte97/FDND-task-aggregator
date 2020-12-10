@@ -1,12 +1,21 @@
 <script>
+    import { findSprint } from "../../public/js/findSprint.js"
+
     import Tags from "./Tags.svelte"
     export let task
 
+    let sprint = findSprint(task.topics)
 </script>
 
 <li>
     <h3>{task.title}</h3>
     <p>{task.description}</p>
+    <p>Semester {task.semester}</p>
+    {#if task.sprint}
+        <p>Sprint {task.sprint}</p>
+    {:else}
+        <p>Sprint {sprint}</p>
+    {/if}
     <!--Tags component, with a copy of the taglist data.-->
     <Tags bind:task/>
     <a href={task.url}>Link to Github Repo</a>
