@@ -15,7 +15,7 @@ const graphqlWithAuth = graphql.defaults({
 
 graphqlWithAuth(`{
   organization(login: "fdnd-task") {
-    repositories(first: 100, orderBy: {field: NAME, direction: DESC}) {
+    repositories(first: 100, orderBy: {field: NAME, direction: ASC}) {
       nodes {
         name
         url

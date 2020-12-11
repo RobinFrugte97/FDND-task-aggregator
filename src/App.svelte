@@ -1,21 +1,27 @@
 <script>
 	import { onMount } from "svelte"
 	import { searchList } from "../public/js/searchList.js"
+	// import { sortByTaskOrder } from "../public/js/sortByTaskOrder.js"
 	import { getTaskTitles } from "../public/js/getTaskTitles.js"
-
+  
 	import TaskList from "./components/TaskList.svelte"
 	import TaskSearch from "./components/TaskSearch.svelte"
-
+	
 	let searchTerm = ""
 	let taskList = [] /*Original copy of the data.*/
 	let displayTaskList = [] /*Copy of the data that is used to render the tasks.*/
-	let taskTitles = []
+  let taskTitles = []
+  
 	/*When App.svelte mounts, this function to fetch the data will run.*/
 	onMount(async () => {
 		const dataResponse = await fetch('data.json')
 		taskList = await dataResponse.json()
-
 		displayTaskList = taskList
+
+		/* SPRINT SORT */
+		// displayTaskList = sortByTaskOrder(taskList)
+		/* SPRINT SORT */
+    
 		// Create a list of titles for the datalist search
 		taskTitles = getTaskTitles(displayTaskList)
 
