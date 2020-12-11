@@ -3,7 +3,6 @@
     const dispatcher = createEventDispatcher()
     export let searchTerm
     export let taskTitles
-    console.log(taskTitles)
 
 </script>
 

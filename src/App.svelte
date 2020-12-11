@@ -1,7 +1,8 @@
 <script>
 	import { onMount } from "svelte"
 	import { searchList } from "../public/js/searchList.js"
-	// import { sortByTaskOrder } from "../public/js/sortByTaskOrder.js"
+	// import { sortByTaskOrder } from "../public/js/sortByTaskOrder.js" 						/* SPRINT SORT */
+	// import { sortByAlphabeticalOrder } from "../public/js/sortByAlphabeticalOrder.js" 		/* ALPHABETICAL SORT */
 	import { getTaskTitles } from "../public/js/getTaskTitles.js"
   
 	import TaskList from "./components/TaskList.svelte"
@@ -21,7 +22,11 @@
 		/* SPRINT SORT */
 		// displayTaskList = sortByTaskOrder(taskList)
 		/* SPRINT SORT */
-    
+
+		/* ALPHABETICAL SORT */
+		// displayTaskList = sortByAlphabeticalOrder(taskList)
+		/* ALPHABETICAL SORT */
+
 		// Create a list of titles for the datalist search
 		taskTitles = getTaskTitles(displayTaskList)
 
