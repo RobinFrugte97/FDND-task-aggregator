@@ -5,7 +5,6 @@ export function getTaskTitles(displayTaskList) {
 }
 
 // Array duplication removal function from https://dev.to/mshin1995/back-to-basics-removing-duplicates-from-an-array-55he
-
 function removeDuplicates(array) {
     let a = []
     array.map(x => {
