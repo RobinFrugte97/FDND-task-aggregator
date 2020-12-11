@@ -6,7 +6,6 @@
 
 <li>
     <h3>{task.title}</h3>
-    <p>{task.description}</p>
     <p>Semester {task.semester}</p>
     <p>Sprint {task.sprint}</p>
     <p>Level: {supportLevels[task["support-level"] -1]}</p>
