@@ -13,7 +13,7 @@
     {:else}
         <!--This "else" is shown if displayTaskList is empty or otherwise not compatible 
         with the each-block.-->
-        <p>Loading...</p>
+        <p>No result...</p>
     {/each}
 </ul>
 

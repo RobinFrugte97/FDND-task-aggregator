@@ -1,6 +1,7 @@
 <script>
     import Tags from "./Tags.svelte"
     export let task
+    
     const supportLevels = ["Example", "Duplicate", "Experiment", "Extension", "Autonomous"]
 </script>
 

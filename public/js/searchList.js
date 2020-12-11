@@ -1,4 +1,4 @@
-// Function that loops through a task's taglist to try and find a match.
+// Function that loops through a task's taglist to try and find a match with the user query.
 function findTag(tags, query) {
     let foundTag = false
     tags.forEach(tag => {

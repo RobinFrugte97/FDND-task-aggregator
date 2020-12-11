@@ -16,6 +16,8 @@
     on:keyup={() => {
         dispatcher('updateSearch')
 }}/>
+<!-- Datalist with options for input suggestion. 
+The amount of options is directly linked to the amount of results of the user input. -->
 <datalist id="searchOptions">
     {#if searchTerm === ""}
         <option></option>

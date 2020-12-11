@@ -9,9 +9,9 @@
 	import TaskSearch from "./components/TaskSearch.svelte"
 	
 	let searchTerm = ""
-	let taskList = [] /*Original copy of the data.*/
-	let displayTaskList = [] /*Copy of the data that is used to render the tasks.*/
-  let taskTitles = []
+	let taskList = [] // Original copy of the data.
+	let displayTaskList = [] // Copy of the data that is used to render the tasks.
+  	let taskTitles = []
   
 	/*When App.svelte mounts, this function to fetch the data will run.*/
 	onMount(async () => {
