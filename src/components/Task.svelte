@@ -9,7 +9,8 @@
     <h3>{task.title}</h3>
     <p>Semester {task.semester}</p>
     <p>Sprint {task.sprint}</p>
-    <p>Level: {supportLevels[task["support-level"] -1]}</p>
+    <p>Level: <span>{supportLevels[task["support-level"] -1]}</span></p>
+    <p>Client: <span>{task.client}</span></p>
     <!--Tags component, with a copy of the taglist data.-->
     <Tags bind:task/>
     <a href={task.url}>Link to Github Repo</a>
@@ -33,5 +34,9 @@
         margin-top: 0;
         margin-bottom: .1em;
         text-align: center;
+    }
+    
+    span {
+        font-weight: bold;
     }
 </style>
