@@ -9,10 +9,10 @@ function findTag(tags, query) {
     return foundTag
 }
 
-// Function that checks if the user input matches either the title, description or the tags of a task.
+// Function that checks if the user input matches either the title, sprint name, semester name or the tags of a task.
 export function searchList(list, query) {
     return list.filter(item => {
-        if (findTag(item.tags, query.toLowerCase()) || item.title.toLowerCase().match(query.toLowerCase()) || item.description.toLowerCase().match(query.toLowerCase())) {
+        if (findTag(item.tags, query.toLowerCase()) || item.title.toLowerCase().match(query.toLowerCase()) || item.semesterName.toLowerCase().match(query.toLowerCase()) || item.sprintName.toLowerCase().match(query.toLowerCase())) {
             return true
         }
     })

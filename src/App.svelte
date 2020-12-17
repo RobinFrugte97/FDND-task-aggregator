@@ -12,13 +12,19 @@
 	let searchTerm = ""
 	let taskList = [] // Original copy of the data.
 	let displayTaskList = [] // Copy of the data that is used to render the tasks.
-  	let taskTitles = []
+	let taskTitles = []
+	let searchTaskList = [] // Copy of the data to be used in the search
   
 	/*When App.svelte mounts, this function to fetch the data will run.*/
 	onMount(async () => {
 		const dataResponse = await fetch('data.json')
 		taskList = await dataResponse.json()
-		displayTaskList = getSemesterSprintName(taskList)
+
+		// Add semester and sprint name to the task data list and put it in the search task list array.
+		searchTaskList = getSemesterSprintName(taskList)
+
+		// Copy the array of tasks, complete with semester and sprint name to an array that is to be displayed.
+		displayTaskList = searchTaskList
 
 		/* SPRINT SORT */
 		// displayTaskList = sortByTaskOrder(taskList)
