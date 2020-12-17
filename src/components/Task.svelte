@@ -7,8 +7,8 @@
 
 <li>
     <h3>{task.title}</h3>
-    <p>Semester {task.semester}</p>
-    <p>Sprint {task.sprint}</p>
+    <p>Semester: {task.semesterName}</p>
+    <p>Sprint: {task.sprintName}</p>
     <p>Level: <span>{supportLevels[task["support-level"] -1]}</span></p>
     <p>Client: <span>{task.client}</span></p>
     <!--Tags component, with a copy of the taglist data.-->

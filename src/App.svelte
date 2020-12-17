@@ -3,6 +3,7 @@
 	import { searchList } from "../public/js/searchList.js"
 	// import { sortByTaskOrder } from "../public/js/sortByTaskOrder.js" 						/* SPRINT SORT */
 	// import { sortByAlphabeticalOrder } from "../public/js/sortByAlphabeticalOrder.js" 		/* ALPHABETICAL SORT */
+	import { getSemesterSprintName } from "../public/js/getSemesterSprintName.js"
 	import { getTaskTitles } from "../public/js/getTaskTitles.js"
   
 	import TaskList from "./components/TaskList.svelte"
@@ -17,7 +18,7 @@
 	onMount(async () => {
 		const dataResponse = await fetch('data.json')
 		taskList = await dataResponse.json()
-		displayTaskList = taskList
+		displayTaskList = getSemesterSprintName(taskList)
 
 		/* SPRINT SORT */
 		// displayTaskList = sortByTaskOrder(taskList)
