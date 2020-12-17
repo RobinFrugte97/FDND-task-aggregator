@@ -30,38 +30,62 @@
 
 		// Create a list of titles for the datalist search
 		taskTitles = getTaskTitles(displayTaskList)
-
-		console.log(displayTaskList)
 	})
 </script>
 
-<main>
-	<h1>FDND Task Overview</h1>
+<header>
+	<h1>FDND <em>Tasks</em></h1>
 	<!--Tasksearch component, with a function the fires on every change of the value.-->
-	<TaskSearch bind:searchTerm bind:taskTitles
-					on:updateSearch={
-						() => {
-							displayTaskList = searchList(taskList, searchTerm)
-						}
-					}/>
+	<TaskSearch bind:searchTerm bind:taskTitles on:updateSearch={
+		() => {
+			displayTaskList = searchList(taskList, searchTerm)
+		}
+	}/>
+</header>
+
+<main>
 	<!--Tasklist component, with a copy of the task data bound to it.-->
 	<TaskList bind:displayTaskList/>
 </main>
 
 <style>
-	main {
-		display: flex;
-		flex-direction: column;
+	header {
+		display:flex;
+		flex-direction:column;
+		justify-content: space-between;
 		align-items: center;
-		padding: 1em;
-		margin: 0 auto;
 	}
-
 	h1 {
 		color: white;
 		font-family: sans-serif;
-		font-size: 4em;
+		font-size: 3em;
 		font-weight: bold;
-		margin-top: 0em;
+		margin: 0;
+		white-space: nowrap;
 	}
+	h1 em {
+		color:purple;
+		font-style: normal;
+	}
+	main {
+		margin: 2em 0;
+	}
+	@media (min-width: 40em) {
+		header {
+			flex-direction: row;
+		}
+		main {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			grid-gap: 1em;
+			padding: 0;
+		}
+	}
+
+	@media (min-width: 60em) {
+		main {
+			grid-template-columns: 1fr 1fr 1fr;
+		}
+	}
+	
 </style>

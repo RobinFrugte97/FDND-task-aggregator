@@ -6,36 +6,45 @@
 
 </script>
 
-<label for="searchBar">Search for a task:</label>
-<input
-    type="search"
-    id="searchBar"
-    aria-label="Search Input" 
-    list="searchOptions"
-    bind:value={searchTerm}
-    on:keyup={() => {
-        dispatcher('updateSearch')
-}}/>
-<!-- Datalist with options for input suggestion. 
-The amount of options is directly linked to the amount of results of the user input. -->
-<datalist id="searchOptions">
-    {#if searchTerm === ""}
-        <option></option>
-    {:else}
-        {#each taskTitles as title}
-            <option value={title}/>
-        {/each}
+<form action="#">
+    <label for="searchBar">Search tasks</label>
+    <input
+        type="search"
+        id="searchBar"
+        aria-label="Search Input" 
+        list="searchOptions"
+        bind:value={searchTerm}
+        on:keyup={() => {
+            dispatcher('updateSearch')
+    }}/>
+    <!-- Datalist with options for input suggestion. 
+    The amount of options is directly linked to the amount of results of the user input. -->
+    <datalist id="searchOptions">
+        {#if searchTerm === ""}
+            <option></option>
+        {:else}
+            {#each taskTitles as title}
+                <option value={title}/>
+            {/each}
 
-    {/if}
-</datalist>
+        {/if}
+    </datalist>
+</form>
 
 <style>
+    form {
+        display:flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
     label {
         color: white;
-        margin-bottom: .5em;
-        font-size: 1.5em;
+        margin-right: .5em;
+        margin-bottom: 0;
+        white-space: nowrap;
     }
     input {
-        width: 25%;
+        width: 30vw;
+        margin-bottom: 0;
     }
 </style>
