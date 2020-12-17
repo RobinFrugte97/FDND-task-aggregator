@@ -2,35 +2,36 @@
     export let task
 </script>
 
-<h4>Tags:</h4>
 <ul>
     <!--Svelte each-block looping through the tags.-->
     {#each task.tags as tag}
-        <li>{tag}</li>
+        <li>
+            {tag}
+        </li>
     {:else}
         <p>No tags</p>
     {/each}
 </ul>
 
 <style>
-    h4 {
-        margin: .5em;
-    }
-
     ul {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-gap: .5em;
+        display: flex;
+        justify-content:flex-start;
+        flex-wrap:wrap;
         list-style: none;
         padding: 0;
-        margin: 0;
-        margin-bottom: 1em;
+        margin: 1rem 0 0;
+        padding-bottom:.5rem;
     }
 
     li {
         list-style-position: inside;
-        margin-left: 0;
-        text-align: center;
-        text-decoration: underline;
+        margin-right:.5rem;  
+        white-space:nowrap;
+        background-color: #f0f0f0;
+        padding:.25rem;
+        border-radius:.25rem;
+        margin-bottom: .25rem;
+        color:#333;
     }
 </style>

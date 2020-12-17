@@ -39,7 +39,6 @@ graphqlWithAuth(`{
   }
 }`)
   .then(result => {
-    console.log(result.organization.repositories.nodes)
     result.organization.repositories.nodes.map(task => {
       taskList.push({
         ...fm(task.description.text).attributes,

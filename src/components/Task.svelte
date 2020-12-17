@@ -2,41 +2,77 @@
     import Tags from "./Tags.svelte"
     export let task
     
-    const supportLevels = ["Example", "Duplicate", "Experiment", "Extension", "Autonomous"]
+    const supportLevels = ["Voorbeeld", "Imitatie", "Experiment", "Uitbreiding", "Autonoom"]
 </script>
 
-<li>
-    <h3>{task.title}</h3>
-    <p>Semester: {task.semesterName}</p>
-    <p>Sprint: {task.sprintName}</p>
-    <p>Level: <span>{supportLevels[task["support-level"] -1]}</span></p>
-    <p>Client: <span>{task.client}</span></p>
-    <!--Tags component, with a copy of the taglist data.-->
-    <Tags bind:task/>
-    <a href={task.url}>Link to Github Repo</a>
-</li>
+
+<a href={task.url}>
+    <article>
+        <h3>{task.title} </h3>
+        <p><strong>{task.client}</strong></p>
+        <div>
+            <p>{task.semesterName} /</p>
+            <p> {task.sprintName}</p>
+        </div>
+        
+        
+        <p><em>{supportLevels[task["support-level"] -1]}</em></p>
+        <!--Tags component, with a copy of the taglist data.-->
+        <Tags bind:task/>
+    </article>
+</a>
+
 
 <style>
-    li {
+    a {
+        color:var(--text);
+    }
+    a:hover {
+        text-decoration: none;
+    }
+    article {
         background-color: white;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        list-style: none;
+        align-items: flex-start;
         padding: .5em 1.5em;
         border-radius: .4em;
-        min-width: 15em;
+        transition:.25s;
+        margin-bottom: 1em;
+        
+    }
+    article:hover {
+        transform: scale(1.025);
+    }
+    @media (min-width:40em) {
+        a {
+            align-self:stretch;
+        }
+        article {
+            margin: 0;
+            height:100%;
+            
+        }
     }
     
     h3 {
-        font-size: 2em;
-        color: purple;
+        font-size: 1.5em;
+        color: var(--primary);
         margin-top: 0;
-        margin-bottom: .1em;
-        text-align: center;
+        margin-bottom: .5rem;
     }
+    p {
+        margin: 0;
+        color: inherit;
+    }
+    div {
+        width:100%;
+        display:flex;
+        margin: .5rem 0 .25rem;
+    }
+        div p:first-child {
+            margin-right:.25rem
+        }
     
-    span {
-        font-weight: bold;
-    }
+    
 </style>
