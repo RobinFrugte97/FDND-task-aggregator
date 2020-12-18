@@ -1,0 +1,68 @@
+:root {
+	--primary: purple;
+	--secondary: white;
+	--text: #333;
+}
+* {
+	box-sizing:border-box;
+}
+html, body {
+	position: relative;
+
+}
+
+body {
+	background: linear-gradient(to bottom right, #ffaefd, #2361ec);
+	background-attachment: fixed;
+    background-repeat: no-repeat;
+	margin: 0;
+	padding: 1em;
+	box-sizing: border-box;
+	font-family: open sans;
+}
+
+a {
+	color:var(--primary);
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+label {
+	display: block;
+}
+
+input, button, select, textarea {
+	font-family: inherit;
+	font-size: inherit;
+	-webkit-padding: 0.4em 0;
+	padding: 0.4em;
+	margin: 0 0 0.5em 0;
+	box-sizing: border-box;
+	border: 1px solid #ccc;
+	border-radius: 2px;
+}
+
+input:disabled {
+	color: #ccc;
+}
+
+button {
+	color: var(--text);
+	background-color:var(--secondary);
+	outline: none;
+}
+
+button:disabled {
+	color: #999;
+}
+
+button:not(:disabled):active {
+	background-color: #ddd;
+}
+
+button:focus {
+	border-color: #666;
+}
