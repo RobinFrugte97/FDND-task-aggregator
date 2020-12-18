@@ -19,7 +19,7 @@ The overview of tasks, together with a couple of [features](#features), makes it
   * [Features](#features)
   * [Installation](#installation)
   * [Use](#use)
-  * [Best practices](#best-practices)
+  * [To-Do list](#To-Do-list)
   * [Sources](#sources)
   * [License](#license)
 
