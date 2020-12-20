@@ -15,19 +15,17 @@ jobs:
       with:
         submodules: true
 
-    - name: Setup Node
-      uses: actions/setup-node@v1
+    - uses: actions/setup-node@v1
       with:
         node-version: "14.x"
 
-    - name: Cache dependencies Node
-      uses: actions/cache@v1
+    - uses: actions/cache@v1
       with:
         path: ~/.npm
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: ${{ runner.os }}-node-
         
-    - name: Install
+    - name: NPM Install
       run: npm install
 
     - name: Build Svelte
@@ -35,7 +33,7 @@ jobs:
         GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: npm run build
     
-    - name: Deploy
+    - name: Deploy to gh-pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
