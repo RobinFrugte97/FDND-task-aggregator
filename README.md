@@ -42,7 +42,7 @@ Results are automatically displayed on user input.
 
 ### Datalist
 
-Whilst typing, you are presented with suggestions using the html `<datalist>` element. The options inside the datalist are dynamicly calculated based on user input.
+While typing, the user is presented with a couple of suggestions using the html `<datalist>` element. The options inside the datalist are dynamicly calculated based on user input.
 
 ### Sorting
 
