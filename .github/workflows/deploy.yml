@@ -7,7 +7,9 @@ on:
 
 jobs:
   deploy:
+    
     runs-on: ubuntu-latest
+    
     steps:
     - uses: actions/checkout@v2
       with:
@@ -29,6 +31,8 @@ jobs:
       run: npm install
 
     - name: Build Svelte
+      env: 
+        GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: npm run build
     
     - name: Deploy
