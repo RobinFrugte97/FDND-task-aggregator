@@ -47,6 +47,7 @@
 			displayTaskList = searchList(taskList, searchTerm)
 		}
 	}/>
+	<TaskSort  />
 </header>
 
 <main>
