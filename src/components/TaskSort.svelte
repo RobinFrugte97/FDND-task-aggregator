@@ -1,8 +1,10 @@
 <script>
-	const sortOptions = [
+	import {createEventDispatcher} from "svelte"
+    const dispatcher = createEventDispatcher()
+	const selectOptions = [
 		{
 			id: 1,
-			text: 'A-Z'
+			text: 'A-Z',
 		},
 		{
 			id: 2,
@@ -10,7 +12,7 @@
 		},
 		{
 			id: 3,
-			text: 'Task descending'
+			text: 'Task descending',
 		},
 		{
 			id: 4,
@@ -26,20 +28,74 @@
 		}
 	]
 
-	let selected
-
-	function handleSubmit() {
-
-	}
+	export let selected
 </script>
 
-<form on:submit|preventDefault={handleSubmit}>
-	<select value={selected}>
-		{#each sortOptions as sortOption}
-			<option value={sortOption}>
-				{sortOption.text}
-			</option>
-		{/each}
-	</select>
+<form action="#">
+	<div class="select">
+		<select bind:value={selected} on:change={() => dispatcher('updateSort')}>
+			{#each selectOptions as option}
+				<option value={option}>
+					{option.text}
+				</option>
+			{/each}
+		</select>
+		<span class="focus"></span>
+	</div>
 </form>
 
+<style>
+select {
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  padding: 0 1em 0 0;
+  margin: 0;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+  outline: none;
+}
+
+select::-ms-expand {
+	display: none;
+}
+
+.select {
+	width: 100%;
+	min-width: 15ch;
+	max-width: 30ch;
+	border: 1px solid var(--select-border);
+	border-radius: 0.25em;
+	padding: 0.25em 0.5em;
+	font-size: 1.25rem;
+	cursor: pointer;
+	line-height: 1.1;
+	background-color: #fff;
+	background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+
+.select::after {
+	content: "";
+	width: 0.8em;
+	height: 0.5em;
+	background-color: purple;
+	clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+	justify-self: end;
+}
+
+select:focus + .focus {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  border: 2px solid var(--select-focus);
+  border-radius: inherit;
+}
+</style>

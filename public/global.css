@@ -3,9 +3,13 @@
 	--secondary: white;
 	--text: #333;
 }
-* {
+
+*,
+*::before,
+*::after {
 	box-sizing:border-box;
 }
+
 html, body {
 	position: relative;
 

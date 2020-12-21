@@ -1,19 +1,22 @@
 <script>
 	import { onMount } from "svelte"
 	import { searchList } from "../public/js/searchList.js"
-	// import { sortByTaskOrder } from "../public/js/sortByTaskOrder.js" 						/* SPRINT SORT */
-	// import { sortByAlphabeticalOrder } from "../public/js/sortByAlphabeticalOrder.js" 		/* ALPHABETICAL SORT */
+	import { sortByTaskOrder } from "../public/js/sortByTaskOrder.js" 						/* SPRINT SORT */
+	import { sortByAlphabeticalOrder } from "../public/js/sortByAlphabeticalOrder.js" 		/* ALPHABETICAL SORT */
+	import { sortList } from "../public/js/sortList.js"
 	import { getSemesterSprintName } from "../public/js/getSemesterSprintName.js"
 	import { getTaskTitles } from "../public/js/getTaskTitles.js"
   
 	import TaskList from "./components/TaskList.svelte"
 	import TaskSearch from "./components/TaskSearch.svelte"
+	import TaskSort from "./components/TaskSort.svelte"
 	
 	let searchTerm = ""
 	let taskList = [] // Original copy of the data.
 	let displayTaskList = [] // Copy of the data that is used to render the tasks.
 	let taskTitles = []
 	let searchTaskList = [] // Copy of the data to be used in the search
+	let selected = {}
   
 	/*When App.svelte mounts, this function to fetch the data will run.*/
 	onMount(async () => {
@@ -27,7 +30,7 @@
 		displayTaskList = searchTaskList
 
 		/* SPRINT SORT */
-		// displayTaskList = sortByTaskOrder(taskList)
+		// displayTaskList = sortByTaskOrder(displayTaskList)
 		/* SPRINT SORT */
 
 		/* ALPHABETICAL SORT */
@@ -47,7 +50,11 @@
 			displayTaskList = searchList(taskList, searchTerm)
 		}
 	}/>
-	<TaskSort  />
+	<TaskSort bind:selected on:updateSort={
+		() => {
+			displayTaskList = sortList(taskList, selected)
+		}
+	}/>
 </header>
 
 <main>
