@@ -49,7 +49,7 @@ select {
   appearance: none;
   background-color: transparent;
   border: none;
-  padding: 0 1em 0 0;
+  padding: 0;
   margin: 0;
   width: 100%;
   font-family: inherit;
@@ -69,7 +69,6 @@ select::-ms-expand {
 	max-width: 30ch;
 	border: 1px solid var(--select-border);
 	border-radius: 0.25em;
-	padding: 0.25em 0.5em;
 	font-size: 1.25rem;
 	cursor: pointer;
 	line-height: 1.1;
@@ -80,13 +79,18 @@ select::-ms-expand {
 	align-items: center;
 }
 
+select {
+	padding: 0.25em 2em 0.25em 0.5em;
+}
 .select::after {
 	content: "";
 	width: 0.8em;
 	height: 0.5em;
 	background-color: purple;
 	clip-path: polygon(100% 0%, 0 0%, 50% 100%);
-	justify-self: end;
+	pointer-events: none;
+	position: absolute;
+	right: 0.25em;
 }
 
 select:focus + .focus {

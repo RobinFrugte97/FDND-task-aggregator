@@ -3,11 +3,10 @@ import { sortByReverseTaskOrder } from "./sortByReverseTaskOrder.js"
 import { sortByAlphabeticalOrder } from "./sortByAlphabeticalOrder.js" 
 import { sortByReverseAlphabeticalOrder } from "./sortByReverseAlphabeticalOrder.js" 
 import { sortByDifficultyOrder } from "./sortByDifficultyOrder.js"
+import { sortByReverseDifficultyOrder } from "./sortByReverseDifficultyOrder.js"
 
 
 export function sortList(taskList, selected) {
-	console.log("selected",selected)
-	console.log("taskList", taskList)
 	if(selected.id === 1) {
 		return sortByAlphabeticalOrder(taskList)
 	} else if(selected.id === 2) {
@@ -18,5 +17,7 @@ export function sortList(taskList, selected) {
 		return sortByReverseTaskOrder(taskList)
 	} else if(selected.id === 5) {
 		return sortByDifficultyOrder(taskList)
+	} else if(selected.id === 6) {
+		return sortByReverseDifficultyOrder(taskList)
 	}
 }

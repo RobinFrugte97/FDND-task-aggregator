@@ -1,11 +1,10 @@
 <script>
 	import { onMount } from "svelte"
 	import { searchList } from "../public/js/searchList.js"
-	import { sortByTaskOrder } from "../public/js/sortByTaskOrder.js" 						/* SPRINT SORT */
-	import { sortByAlphabeticalOrder } from "../public/js/sortByAlphabeticalOrder.js" 		/* ALPHABETICAL SORT */
 	import { sortList } from "../public/js/sortList.js"
 	import { getSemesterSprintName } from "../public/js/getSemesterSprintName.js"
 	import { getTaskTitles } from "../public/js/getTaskTitles.js"
+	import { addDifficulty } from '../public/js/addDifficulty.js'
   
 	import TaskList from "./components/TaskList.svelte"
 	import TaskSearch from "./components/TaskSearch.svelte"
@@ -17,6 +16,7 @@
 	let taskTitles = []
 	let searchTaskList = [] // Copy of the data to be used in the search
 	let selected = {}
+	let taskDifficulty = 0
   
 	/*When App.svelte mounts, this function to fetch the data will run.*/
 	onMount(async () => {
@@ -36,9 +36,11 @@
 		/* ALPHABETICAL SORT */
 		// displayTaskList = sortByAlphabeticalOrder(taskList)
 		/* ALPHABETICAL SORT */
+		addDifficulty(displayTaskList)
 
 		// Create a list of titles for the datalist search
 		taskTitles = getTaskTitles(displayTaskList)
+
 	})
 </script>
 
