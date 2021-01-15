@@ -5,10 +5,13 @@
 	import { getSemesterSprintName } from "../public/js/getSemesterSprintName.js"
 	import { getTaskTitles } from "../public/js/getTaskTitles.js"
 	import { addDifficulty } from '../public/js/addDifficulty.js'
+    import { getSemesterTitles } from "../public/js/getSemesterTitles.js"
+
   
 	import TaskList from "./components/TaskList.svelte"
 	import TaskSearch from "./components/TaskSearch.svelte"
 	import TaskSort from "./components/TaskSort.svelte"
+	import SemesterFilter from "./components/SemesterFilter.svelte"
 	
 	let searchTerm = ""
 	let taskList = [] // Original copy of the data.
@@ -17,6 +20,7 @@
 	let searchTaskList = [] // Copy of the data to be used in the search
 	let selected = {}
 	let taskDifficulty = 0
+	let semesters = []
   
 	/*When App.svelte mounts, this function to fetch the data will run.*/
 	onMount(async () => {
@@ -25,9 +29,12 @@
 
 		// Add semester and sprint name to the task data list and put it in the search task list array.
 		searchTaskList = getSemesterSprintName(taskList)
+		semesters = getSemesterTitles(taskList)
+		console.log(semesters)
 
 		// Copy the array of tasks, complete with semester and sprint name to an array that is to be displayed.
 		displayTaskList = searchTaskList
+		console.log(displayTaskList)
 
 		/* SPRINT SORT */
 		// displayTaskList = sortByTaskOrder(displayTaskList)
@@ -61,7 +68,8 @@
 
 <main>
 	<!--Tasklist component, with a copy of the task data bound to it.-->
-	<TaskList bind:displayTaskList/>
+	<!-- <TaskList bind:displayTaskList/> -->
+	<SemesterFilter bind:semesters bind:displayTaskList/>
 </main>
 
 <style>
@@ -84,24 +92,26 @@
 		font-style: normal;
 	}
 	main {
+		display: flex;
+		flex-direction: column;
 		margin: 2em 0;
 	}
 	@media (min-width: 40em) {
 		header {
 			flex-direction: row;
 		}
-		main {
+		/* main {
 			display: grid;
 			grid-template-columns: 1fr 1fr;
 			grid-gap: 1em;
 			padding: 0;
-		}
+		} */
 	}
 
 	@media (min-width: 60em) {
-		main {
+		/* main {
 			grid-template-columns: 1fr 1fr 1fr;
-		}
+		} */
 	}
 	
 </style>
