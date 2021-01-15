@@ -2,12 +2,14 @@
     export let semesters
     export let displayTaskList
 
-    let sprints = []
-    let sprintTitles = []
+    let sprintTitles
     let Sprints
+    let sprints
 
 
     function loadSprints(semester, taskList) {
+        sprints = []
+        sprintTitles = []
         sprints = taskList.filter(task => task.semester === semester)
         sprints.map(sprint => sprintTitles.push(sprint.sprintName))
 
