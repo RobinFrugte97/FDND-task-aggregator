@@ -3,8 +3,9 @@
     export let displayTaskList
 
     let sprintTitles
-    let Sprints
     let sprints
+    let showSemesters = true
+    let showSprints = false
 
 
     function loadSprints(semester, taskList) {
@@ -12,22 +13,29 @@
         sprintTitles = []
         sprints = taskList.filter(task => task.semester === semester)
         sprints.map(sprint => sprintTitles.push(sprint.sprintName))
+        showSemesters = !showSemesters
+        showSprints = !showSprints
+
+        console.log("semester " + showSemesters)
+        console.log("sprint " + showSprints)
 
         console.log(sprints) // The sprints array contains all sprints that are a part of the selected semester.
 
         console.log(sprintTitles) // A list of sprintTitles that needs to be checked for duplicates.
-
-        // import('../components/.svelte').then(res => Sprints = res.default) // Imports the sprint component on click.
     }
 </script>
+{#if showSemesters && !showSprints}
+    {#each semesters as semester}
+        <button on:click={loadSprints(semester, displayTaskList)}>
+            Semester {semester}:
+            {displayTaskList.filter(task => task.semester === semester)[0].semesterName}
+        </button>
+    {/each}
+{/if}
 
-{#each semesters as semester}
-    <button on:click={loadSprints(semester, displayTaskList)}>
-        Semester {semester}:
-        {displayTaskList.filter(task => task.semester === semester)[0].semesterName}
-    </button>
-{/each}
-<svelte:component this="{Sprints}" bind:sprints/>
+{#if !showSemesters && showSprints}
+        <!-- Sprint component -->
+{/if}
 
 <style>
     button {
