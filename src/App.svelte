@@ -5,10 +5,13 @@
 	import { getSemesterSprintName } from "../public/js/getSemesterSprintName.js"
 	import { getTaskTitles } from "../public/js/getTaskTitles.js"
 	import { addDifficulty } from '../public/js/addDifficulty.js'
+	import { createSprintFilters } from "../public/js/createSprintFilters.js"
   
 	import TaskList from "./components/TaskList.svelte"
 	import TaskSearch from "./components/TaskSearch.svelte"
 	import TaskSort from "./components/TaskSort.svelte"
+	import FilterSprint from "./components/FilterSprint.svelte"
+	
 	
 	let searchTerm = ""
 	let taskList = [] // Original copy of the data.
@@ -16,7 +19,8 @@
 	let taskTitles = []
 	let searchTaskList = [] // Copy of the data to be used in the search
 	let selected = {}
-	let taskDifficulty = 0
+	let sprintFilters = []
+	let sprintFilter = ''
   
 	/*When App.svelte mounts, this function to fetch the data will run.*/
 	onMount(async () => {
@@ -29,14 +33,13 @@
 		// Copy the array of tasks, complete with semester and sprint name to an array that is to be displayed.
 		displayTaskList = searchTaskList
 
-		/* SPRINT SORT */
-		// displayTaskList = sortByTaskOrder(displayTaskList)
-		/* SPRINT SORT */
+		sprintFilters = createSprintFilters(displayTaskList)
 
-		/* ALPHABETICAL SORT */
-		// displayTaskList = sortByAlphabeticalOrder(taskList)
-		/* ALPHABETICAL SORT */
+		/*
+		Add difficulty property to the taskList
+		*/
 		addDifficulty(displayTaskList)
+		
 
 		// Create a list of titles for the datalist search
 		taskTitles = getTaskTitles(displayTaskList)
@@ -61,6 +64,7 @@
 
 <main>
 	<!--Tasklist component, with a copy of the task data bound to it.-->
+	<FilterSprint bind:displayTaskList bind:sprintFilters />
 	<TaskList bind:displayTaskList/>
 </main>
 
