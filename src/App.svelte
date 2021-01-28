@@ -47,6 +47,12 @@
 		Add difficulty property to the taskList
 		*/
 		addDifficulty(displayTaskList)
+
+		/*
+		1.displayTasklist
+		2.sprints
+		3.finalTasks
+		*/
 		
 
 		// Create a list of titles for the datalist search
@@ -73,7 +79,7 @@
 <main>
 	<!--Tasklist component, with a copy of the task data bound to it.-->
 	<!-- <TaskList bind:displayTaskList/> -->
-	<SemesterFilter bind:semesters bind:displayTaskList bind:sprintFilters/>
+	<SemesterFilter bind:semesters bind:displayTaskList />
 </main>
 
 <style>

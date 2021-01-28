@@ -1,15 +1,13 @@
 <script>
     export let semesters
-    export let displayTaskList
-    export let sprintFilters
+	export let displayTaskList
 
     import FilterSprint from "../components/FilterSprint.svelte"
 
     let sprintTitles
     let sprints
     let showSemesters = true
-    let showSprints = false
-
+	let showSprints = false
 
     function loadSprints(semester, taskList) {
         sprints = []
@@ -37,8 +35,9 @@
                 })
                 return noDupes
             }
-    }
+	}
 </script>
+
 {#if showSemesters}
     {#each semesters as semester}
         <button on:click={loadSprints(semester, displayTaskList)}>
@@ -47,7 +46,7 @@
         </button>
     {/each}
 {:else if !showSemesters}
-        <FilterSprint bind:sprints bind:sprintTitles bind:showSprints />
+		<FilterSprint bind:sprints bind:sprintTitles bind:showSprints bind:showSemesters bind:displayTaskList />
 {/if}
 
 <style>
