@@ -5,22 +5,16 @@
 	import { getSemesterSprintName } from "../public/js/getSemesterSprintName.js"
 	import { getTaskTitles } from "../public/js/getTaskTitles.js"
 	import { addDifficulty } from '../public/js/addDifficulty.js'
-<<<<<<< HEAD
     import { getSemesterTitles } from "../public/js/getSemesterTitles.js"
 
-=======
 	import { createSprintFilters } from "../public/js/createSprintFilters.js"
->>>>>>> feature/filter-sprint
   
 	import TaskList from "./components/TaskList.svelte"
 	import TaskSearch from "./components/TaskSearch.svelte"
 	import TaskSort from "./components/TaskSort.svelte"
-<<<<<<< HEAD
 	import SemesterFilter from "./components/SemesterFilter.svelte"
-=======
 	import FilterSprint from "./components/FilterSprint.svelte"
 	
->>>>>>> feature/filter-sprint
 	
 	let searchTerm = ""
 	let taskList = [] // Original copy of the data.
@@ -28,13 +22,10 @@
 	let taskTitles = []
 	let searchTaskList = [] // Copy of the data to be used in the search
 	let selected = {}
-<<<<<<< HEAD
 	let taskDifficulty = 0
 	let semesters = []
-=======
 	let sprintFilters = []
 	let sprintFilter = ''
->>>>>>> feature/filter-sprint
   
 	/*When App.svelte mounts, this function to fetch the data will run.*/
 	onMount(async () => {
