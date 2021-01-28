@@ -31,9 +31,7 @@
             {displayTaskList.filter(task => task.semester === semester)[0].semesterName}
         </button>
     {/each}
-{/if}
-
-{#if !showSemesters && showSprints}
+{:else if !showSemesters && showSprints}
         <!-- Sprint component -->
 {/if}
 
