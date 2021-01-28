@@ -1,6 +1,9 @@
 <script>
     export let semesters
     export let displayTaskList
+    export let sprintFilters
+
+    import FilterSprint from "../components/FilterSprint.svelte"
 
     let sprintTitles
     let sprints
@@ -22,17 +25,29 @@
         console.log(sprints) // The sprints array contains all sprints that are a part of the selected semester.
 
         console.log(sprintTitles) // A list of sprintTitles that needs to be checked for duplicates.
+        sprintTitles = removeDuplicates(sprintTitles)
+
+        // Array duplication removal function from https://dev.to/mshin1995/back-to-basics-removing-duplicates-from-an-array-55he
+            function removeDuplicates(titles) {
+                let noDupes = []
+                titles.map(title => {
+                    if (!noDupes.includes(title)) {
+                        noDupes.push(title)
+                    }
+                })
+                return noDupes
+            }
     }
 </script>
-{#if showSemesters && !showSprints}
+{#if showSemesters}
     {#each semesters as semester}
         <button on:click={loadSprints(semester, displayTaskList)}>
             Semester {semester}:
             {displayTaskList.filter(task => task.semester === semester)[0].semesterName}
         </button>
     {/each}
-{:else if !showSemesters && showSprints}
-        <!-- Sprint component -->
+{:else if !showSemesters}
+        <FilterSprint bind:sprints bind:sprintTitles bind:showSprints />
 {/if}
 
 <style>

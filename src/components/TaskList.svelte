@@ -1,12 +1,12 @@
 <script>
     import Task from "./Task.svelte"
-    export let displayTaskList
+    export let sprints
 </script>
 
 
 <!--Svelte each-block. This loops through the array of data and 
 feeds each entry to a "Task" component-->
-{#each displayTaskList as task}
+{#each sprints as task}
     <!--Task component, with a copy of the task data.-->
     <Task bind:task />
 {:else}

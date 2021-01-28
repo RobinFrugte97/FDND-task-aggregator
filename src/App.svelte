@@ -73,9 +73,7 @@
 <main>
 	<!--Tasklist component, with a copy of the task data bound to it.-->
 	<!-- <TaskList bind:displayTaskList/> -->
-	<SemesterFilter bind:semesters bind:displayTaskList/>
-	<FilterSprint bind:displayTaskList bind:sprintFilters />
-	<TaskList bind:displayTaskList/>
+	<SemesterFilter bind:semesters bind:displayTaskList bind:sprintFilters/>
 </main>
 
 <style>

@@ -1,21 +1,28 @@
 <script>
-	export let sprintFilters
-	export let displayTaskList
+	export let sprintTitles
+	export let sprints
+	export let showSprints
 
-	const filter = (value) => filterBySprint(value, displayTaskList)
-	export let filteredBySprint = false
+    import TaskList from "../components/TaskList.svelte"
+
+
+	const filter = (value) => filterBySprint(value, sprints)
+	// export let filteredBySprint = false
 
 	
 	function filterBySprint(value, taskList) {
 		const filteredTaskList = taskList.filter(task => task.sprintName === value)
-		filteredBySprint = true
+		showSprints = false
 
-		return displayTaskList = filteredTaskList
+		return sprints = filteredTaskList
 	}
 
 </script>
-{#if !filteredBySprint}
-{#each sprintFilters as sprint}
-	<button on:click={filter(sprint)}>{ sprint }</button>
-{/each}
+{#if showSprints}
+	{#each sprintTitles as sprint}
+		<button on:click={filter(sprint)}>{ sprint }</button>
+	{/each}
+{/if}
+{#if showSprints == false}
+	<TaskList bind:sprints/>
 {/if}
