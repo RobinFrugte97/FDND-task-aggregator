@@ -7,3 +7,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 - Connect to the GitHub API using a read only personal access token
 - Parse the front-matter and log it to the console
+- Generate a HTML frontend based on API data
