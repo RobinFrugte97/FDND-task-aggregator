@@ -1,117 +1,56 @@
 <script>
-	export let sprintTitles
-	export let sprints
-	export let showSprints
-	export let showSemesters
-	export let displayTaskList
-
     import TaskList from "../components/TaskList.svelte"
 
+    import { removeDuplicates } from "../../public/js/getSemesterTitles.js"
 
-	const filter = (value) => filterBySprint(value, sprints)
-	// export let filteredBySprint = false
+	export let semester
+	export let displayTaskList
 
-	let finalTasks = []
-
-	
-	function filterBySprint(value, taskList) {
-		const filteredTaskList = taskList.filter(task => task.sprintName === value)
-		showSprints = false
-
-		return finalTasks = filteredTaskList
+	function showTasks() {
+		showSprints = true
 	}
 
-	// function back() {
-	// 	showSemesters = !showSemesters
-    //     showSprints = !showSprints
-	// }
+	let sprintTitles = []
+    let sprintTasks = []
+	let showSprints = false
 
+    function loadSprints(semester, taskList) {
+        sprintTasks = []
+        sprintTitles = []
+        sprintTasks = taskList.filter(task => task.semester === semester)
+        sprintTasks.map(sprint => sprintTitles.push(sprint.sprintName))
+        showSprints = true
+
+        return sprintTitles = removeDuplicates(sprintTitles)
+
+	}
+
+	loadSprints(semester, displayTaskList)
 </script>
 {#if showSprints}
 	{#each sprintTitles as sprint}
-		<button on:click={filter(sprint)}>{ sprint }</button>
+		<details on:click={showTasks()}>
+			<summary>{ sprint }</summary>
+			<div>
+				<TaskList bind:sprint bind:sprintTasks />
+			</div>
+		</details>
 	{/each}
-	<button class="back-button" on:click={() => {
-		showSemesters = !showSemesters
-			showSprints = !showSprints
-		finalTasks = displayTaskList
-	}}>Back</button>
-{/if}
-{#if !showSprints && !showSemesters}
-<button class="back-button" on:click={() => {
-	showSprints = !showSprints
-	finalTasks = sprints
-}}>Back</button>
-{/if}
-{#if showSprints == false}
-<div>
-	<TaskList bind:finalTasks />
-</div>
 {/if}
 
 <style>
-    button {
-        transition: ease .2s;
-        font-size: 1.5em;
-        min-width: 90%;
-        margin: auto;
-        margin-top: 2.5em;
-        padding: 2em;
-        text-align: left;
-        background-color: transparent;
-        border: black solid 2px;
-    }
-
-    button:hover, :focus {
-        transform: scale(0.99);
-    }
-
-    button:active {
-        transform: scale(0.98);
-    }
-
-    button::after {
-        content: "";
-        width: 0.8em;
-        height: 0.5em;
-        background-color: purple;
-        clip-path: polygon(100% 0%, 0 0%, 50% 100%);
-        pointer-events: none;
-        position: absolute;
-        margin-top: .35em;
-        margin-left: .5em;
-        transform: rotate(270deg)
-    }
-
-    button::after:active {
-        transform: rotate(180deg)
-    }
-	.back-button {
-		color: var(--text);
-		background-color:var(--secondary);
-		outline: none;
-		position: relative;
+	details {
+		margin: 1.25em 0;
 	}
-	.back-button::after {
-        content: "";
-        width: 0.8em;
-        height: 0.5em;
-        background-color: purple;
-        clip-path: polygon(100% 0%, 0 0%, 50% 100%);
-        pointer-events: none;
-        position: absolute;
-        margin-top: .35em;
-		left: 0;
-		top: 1.5em;
-		
-        transform: rotate(90deg)
+    div {
+		padding: 0 1em;
+		margin-bottom: 1em;
 	}
 	@media (min-width: 40em) {
 		div{
 			display: grid;
 			grid-template-columns: 1fr 1fr;
 			grid-gap: 1em;
-			padding: 0;
 		}
 	}
 

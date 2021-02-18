@@ -76,7 +76,7 @@
 	}/>
 </header>
 
-<main>
+<main id="detailsContainer">
 	<!--Tasklist component, with a copy of the task data bound to it.-->
 	<!-- <TaskList bind:displayTaskList/> -->
 	<SemesterFilter bind:semesters bind:displayTaskList />

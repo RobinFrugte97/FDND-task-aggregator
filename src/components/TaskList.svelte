@@ -1,6 +1,19 @@
 <script>
     import Task from "./Task.svelte"
-    export let finalTasks
+    export let sprintTasks
+    export let sprint
+
+    let finalTasks = []
+
+
+    const filter = (value) => filterBySprint(value, sprintTasks)
+	
+	function filterBySprint(value, taskList) {
+		const filteredTaskList = taskList.filter(task => task.sprintName === value)
+
+		return finalTasks = filteredTaskList
+	}
+    filter(sprint)
 </script>
 
 
