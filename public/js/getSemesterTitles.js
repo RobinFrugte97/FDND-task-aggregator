@@ -1,6 +1,8 @@
 export function getSemesterTitles(displayTaskList) {
     let titles = []
     displayTaskList.map(task => {
+        // uncomment if-statement if you want to prevent placeholder data from rendering
+        
         // if(Number.isInteger(task.semester)) {
             titles.push(task.semester)
         // }

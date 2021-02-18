@@ -2,9 +2,8 @@
     export let semesters
 	export let displayTaskList
 
-    import FilterSprint from "../components/FilterSprint.svelte"
+    import FilterSprint from "./FilterSprint.svelte"
 
-    
 </script>
 
 {#each semesters as semester}
@@ -17,6 +16,7 @@
 
 <style>
     details {
+        width: 90%;
         font-size: 1.5em;
         padding: 0 1em;
     }

@@ -5,7 +5,7 @@
 
     let finalTasks = []
 
-
+    // Filter the list of tasks based on the given sprint. 
     const filter = (value) => filterBySprint(value, sprintTasks)
 	
 	function filterBySprint(value, taskList) {

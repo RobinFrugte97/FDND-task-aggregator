@@ -6,14 +6,11 @@
 	export let semester
 	export let displayTaskList
 
-	function showTasks() {
-		showSprints = true
-	}
-
 	let sprintTitles = []
     let sprintTasks = []
 	let showSprints = false
 
+	// Create a list of sprints, with duplicates removed, to be rendered
     function loadSprints(semester, taskList) {
         sprintTasks = []
         sprintTitles = []
@@ -22,14 +19,13 @@
         showSprints = true
 
         return sprintTitles = removeDuplicates(sprintTitles)
-
 	}
 
 	loadSprints(semester, displayTaskList)
 </script>
 {#if showSprints}
 	{#each sprintTitles as sprint}
-		<details on:click={showTasks()}>
+		<details>
 			<summary>{ sprint }</summary>
 			<div>
 				<TaskList bind:sprint bind:sprintTasks />
