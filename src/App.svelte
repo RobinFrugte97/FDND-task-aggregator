@@ -9,12 +9,9 @@
 
 	import { createSprintFilters } from "../public/js/createSprintFilters.js"
   
-	import TaskList from "./components/TaskList.svelte"
 	import TaskSearch from "./components/TaskSearch.svelte"
 	import TaskSort from "./components/TaskSort.svelte"
-	import SemesterFilter from "./components/SemesterFilter.svelte"
-	import FilterSprint from "./components/FilterSprint.svelte"
-	
+	import FilterSemester from "./components/FilterSemester.svelte"	
 	
 	let searchTerm = ""
 	let taskList = [] // Original copy of the data.
@@ -47,6 +44,12 @@
 		Add difficulty property to the taskList
 		*/
 		addDifficulty(displayTaskList)
+
+		/*
+		1.displayTasklist
+		2.sprints
+		3.finalTasks
+		*/
 		
 
 		// Create a list of titles for the datalist search
@@ -73,7 +76,7 @@
 <main>
 	<!--Tasklist component, with a copy of the task data bound to it.-->
 	<!-- <TaskList bind:displayTaskList/> -->
-	<SemesterFilter bind:semesters bind:displayTaskList bind:sprintFilters/>
+	<FilterSemester bind:semesters bind:displayTaskList />
 </main>
 
 <style>

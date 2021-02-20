@@ -1,28 +1,58 @@
 <script>
-	export let sprintTitles
-	export let sprints
-	export let showSprints
-
     import TaskList from "../components/TaskList.svelte"
 
+    import { removeDuplicates } from "../../public/js/getSemesterTitles.js"
 
-	const filter = (value) => filterBySprint(value, sprints)
-	// export let filteredBySprint = false
+	export let semester
+	export let displayTaskList
 
-	
-	function filterBySprint(value, taskList) {
-		const filteredTaskList = taskList.filter(task => task.sprintName === value)
-		showSprints = false
+	let sprintTitles = []
+    let sprintTasks = []
+	let showSprints = false
 
-		return sprints = filteredTaskList
+	// Create a list of sprints, with duplicates removed, to be rendered
+    function loadSprints(semester, taskList) {
+        sprintTasks = []
+        sprintTitles = []
+        sprintTasks = taskList.filter(task => task.semester === semester)
+        sprintTasks.map(sprint => sprintTitles.push(sprint.sprintName))
+        showSprints = true
+
+        return sprintTitles = removeDuplicates(sprintTitles)
 	}
 
+	loadSprints(semester, displayTaskList)
 </script>
 {#if showSprints}
 	{#each sprintTitles as sprint}
-		<button on:click={filter(sprint)}>{ sprint }</button>
+		<details>
+			<summary>{ sprint }</summary>
+			<div>
+				<TaskList bind:sprint bind:sprintTasks />
+			</div>
+		</details>
 	{/each}
 {/if}
-{#if showSprints == false}
-	<TaskList bind:sprints/>
-{/if}
+
+<style>
+	details {
+		margin: 1.25em 0;
+	}
+    div {
+		padding: 0 1em;
+		margin-bottom: 1em;
+	}
+	@media (min-width: 40em) {
+		div{
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			grid-gap: 1em;
+		}
+	}
+
+	@media (min-width: 60em) {
+		div {
+			grid-template-columns: 1fr 1fr 1fr;
+		}
+	}
+</style>
