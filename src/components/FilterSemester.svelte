@@ -1,7 +1,8 @@
 <script>
+    import FilterSprint from "./FilterSprint.svelte"
+    
     export let semesters
 	export let displayTaskList
-    import FilterSprint from "./FilterSprint.svelte"
 
 </script>
 

@@ -5,21 +5,21 @@
     import Task from "./Task.svelte"
 	import TaskSearch from "../components/TaskSearch.svelte"
 
-    export let sprintTasks
+    export let semesterTasks
     export let sprint
 	export let displayTaskList
 
-    let finalTasks = []	
+    let finalTasks = []
     let searchTerm = ""
-	let taskTitles = []
 
     // Create a list of titles for the datalist search
-	taskTitles = getTaskTitles(displayTaskList)
+	let taskTitles = getTaskTitles(displayTaskList)
 
     // Filter the list of tasks based on the given sprint. 
-    const filter = (value) => filterBySprint(value, sprintTasks)
+    const filter = (value) => filterBySprint(value, semesterTasks)
 	
 	function filterBySprint(value, taskList) {
+		// Filter all semester tasks based on the current sprint name.
 		const filteredTaskList = taskList.filter(task => task.sprintName === value)
 
 		return finalTasks = filteredTaskList
@@ -30,7 +30,8 @@
 <!-- Sprint specific search form-->
 <TaskSearch bind:searchTerm bind:taskTitles on:updateSearch={
 	() => {
-		finalTasks = searchList(sprintTasks, searchTerm)
+		// The task list of this sprint is automatically updated on "updateSearch"
+		finalTasks = searchList(semesterTasks, searchTerm)
 	}
 }/>
 
