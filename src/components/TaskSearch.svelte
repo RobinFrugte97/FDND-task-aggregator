@@ -1,8 +1,11 @@
 <script>
     import {createEventDispatcher} from "svelte"
+
     const dispatcher = createEventDispatcher()
+
     export let searchTerm
     export let taskTitles
+    
 </script>
 
 <form action="#">
@@ -33,8 +36,11 @@
 <style>
     form {
         display:flex;
-        justify-content: flex-end;
+        justify-content: center;
         align-items: center;
+		position: absolute;
+		top:.75rem;
+		right:1rem;
     }
     label {
         color: white;

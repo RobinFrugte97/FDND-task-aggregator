@@ -1,7 +1,8 @@
 :root {
-	--primary: purple;
-	--secondary: white;
-	--text: #333;
+	--primary: #fff;
+	--secondary: #050840;
+	--highlight-primary:#7ce7c9;
+	--highlight-secondary: #9d7beb;
 }
 
 *,
@@ -16,9 +17,7 @@ html, body {
 }
 
 body {
-	background: linear-gradient(to bottom right, #ffaefd, #2361ec);
-	background-attachment: fixed;
-    background-repeat: no-repeat;
+	background: var(--secondary);
 	margin: 0;
 	padding: 1em;
 	box-sizing: border-box;
@@ -26,7 +25,7 @@ body {
 }
 
 a {
-	color:var(--primary);
+	color:var(--highlight-secondary);
 	text-decoration: none;
 }
 
@@ -54,46 +53,12 @@ input:disabled {
 }
 
 button {
-	color: var(--text);
-	background-color:var(--secondary);
+	color: var(--secondary);
+	background-color:var(--highlight-secondary);
 	outline: none;
 }
 
-details {
-	display: flex;
-	transition: ease .2s;
-	min-width: 90%;
-	margin: auto;
-	margin-top: 2.5em;
-	text-align: left;
-	background-color: transparent;
-	border: black solid 2px;
-}
-
-details:hover, :focus {
-	transform: scale(0.99);
-}
-
-details[open]:hover, :focus {
-	transform: scale(1);
-}
-
-details:active {
-	transform: scale(0.98);
-}
-
-summary {
-	cursor: pointer;
-
-}
-
-summary:focus {
-	outline: none
-}
 
 @media (min-width: 40em) {
-    summary {
-        height: 5em;
-        padding: 2em;
-    }
+
 }

@@ -1,22 +1,17 @@
 <script>
 	import { onMount } from "svelte"
-	import { searchList } from "../public/js/searchList.js"
 	import { sortList } from "../public/js/sortList.js"
 	import { getSemesterSprintName } from "../public/js/getSemesterSprintName.js"
-	import { getTaskTitles } from "../public/js/getTaskTitles.js"
 	import { addDifficulty } from '../public/js/addDifficulty.js'
     import { getSemesterTitles } from "../public/js/getSemesterTitles.js"
-
 	import { createSprintFilters } from "../public/js/createSprintFilters.js"
   
-	import TaskSearch from "./components/TaskSearch.svelte"
 	import TaskSort from "./components/TaskSort.svelte"
 	import FilterSemester from "./components/FilterSemester.svelte"	
 	
-	let searchTerm = ""
+	
 	let taskList = [] // Original copy of the data.
 	let displayTaskList = [] // Copy of the data that is used to render the tasks.
-	let taskTitles = []
 	let searchTaskList = [] // Copy of the data to be used in the search
 	let selected = {}
 	let taskDifficulty = 0
@@ -48,20 +43,15 @@
 		3.finalTasks
 		*/
 		
-		// Create a list of titles for the datalist search
-		taskTitles = getTaskTitles(displayTaskList)
+
+		
 
 	})
 </script>
 
 <header>
 	<h1>FDND <em>Tasks</em></h1>
-	<!--Tasksearch component, with a function the fires on every change of the value.-->
-	<TaskSearch bind:searchTerm bind:taskTitles on:updateSearch={
-		() => {
-			displayTaskList = searchList(taskList, searchTerm)
-		}
-	}/>
+	<!--Tasksort component, with a function the fires on every change of the value.-->
 	<TaskSort bind:selected on:updateSort={
 		() => {
 			displayTaskList = sortList(taskList, selected)
@@ -72,7 +62,7 @@
 <main>
 	<!--Tasklist component, with a copy of the task data bound to it.-->
 	<!-- <TaskList bind:displayTaskList/> -->
-	<FilterSemester bind:semesters bind:displayTaskList />
+	<FilterSemester bind:semesters bind:displayTaskList bind:taskList/>
 </main>
 
 <style>
@@ -83,7 +73,7 @@
 		align-items: center;
 	}
 	h1 {
-		color: white;
+		color: var(--highlight-primary);
 		font-family: sans-serif;
 		font-size: 3em;
 		font-weight: bold;
@@ -91,8 +81,11 @@
 		white-space: nowrap;
 	}
 	h1 em {
-		color:purple;
+		background-color:var(--highlight-primary);
+		color:var(--secondary);
 		font-style: normal;
+		border-radius: .4rem;
+		padding: 0 .5rem
 	}
 	main {
 		display: flex;

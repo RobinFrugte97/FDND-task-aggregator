@@ -28,10 +28,10 @@
         list-style-position: inside;
         margin-right:.5rem;  
         white-space:nowrap;
-        background-color: #f0f0f0;
+        background-color: var(--primary);
         padding:.25rem;
         border-radius:.25rem;
         margin-bottom: .25rem;
-        color:#333;
+        color:var(--secondary);
     }
 </style>
