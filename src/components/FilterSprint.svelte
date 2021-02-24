@@ -1,7 +1,6 @@
 <script>
     import TaskList from "../components/TaskList.svelte"
 
-
     import { removeDuplicates } from "../../public/js/getSemesterTitles.js"
 
 	export let semester
@@ -12,8 +11,6 @@
     let sprintTasks = []
 
 	let showSprints = false
-
-
 
 	// Create a list of sprints, with duplicates removed, to be rendered
     function loadSprints(semester, taskList) {
@@ -32,19 +29,27 @@
 </script>
 {#if showSprints}
 	{#each sprintTitles as sprint}
-		<details>
-			<summary>{ sprint } </summary>
+		<section>
+			<h3>{ sprint } </h3>
 			
 			
 				<TaskList bind:sprint bind:sprintTasks bind:displayTaskList/>
 			
-		</details>
+		</section>
 	{/each}
 {/if}
 
 <style>
-	details {
-		margin: 1.25em 0;
+	section {
+		position: relative;
+		background-color: var(--secondary);
+		padding: 1rem 1rem 1rem;
+		border-radius: .4em;
+		margin-bottom: 1rem;
+	}
+	h3 {
+		color: var(--primary);
+		margin-top: 0;
 	}
     
 </style>

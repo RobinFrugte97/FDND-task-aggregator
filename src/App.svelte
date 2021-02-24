@@ -51,8 +51,7 @@
 
 <header>
 	<h1>FDND <em>Tasks</em></h1>
-	<!--Tasksearch component, with a function the fires on every change of the value.-->
-	
+	<!--Tasksort component, with a function the fires on every change of the value.-->
 	<TaskSort bind:selected on:updateSort={
 		() => {
 			displayTaskList = sortList(taskList, selected)
@@ -74,7 +73,7 @@
 		align-items: center;
 	}
 	h1 {
-		color: white;
+		color: var(--highlight-primary);
 		font-family: sans-serif;
 		font-size: 3em;
 		font-weight: bold;
@@ -82,8 +81,11 @@
 		white-space: nowrap;
 	}
 	h1 em {
-		color:purple;
+		background-color:var(--highlight-primary);
+		color:var(--secondary);
 		font-style: normal;
+		border-radius: .4rem;
+		padding: 0 .5rem
 	}
 	main {
 		display: flex;

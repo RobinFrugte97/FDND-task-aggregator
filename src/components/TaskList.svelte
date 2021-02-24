@@ -26,15 +26,17 @@
 	}
     filter(sprint)
 </script>
-<TaskSearch bind:searchTerm bind:taskTitles on:updateSearch={
-				() => {
-					finalTasks = searchList(sprintTasks, searchTerm)
-				}
-			}/>
 
-<!--Svelte each-block. This loops through the array of data and 
-feeds each entry to a "Task" component-->
+<!-- Sprint specific search form-->
+<TaskSearch bind:searchTerm bind:taskTitles on:updateSearch={
+	() => {
+		finalTasks = searchList(sprintTasks, searchTerm)
+	}
+}/>
+
+
 <div>
+	<!--Svelte each-block. This loops through the array of data and feeds each entry to a "Task" component-->
     {#each finalTasks as task}
         <!--Task component, with a copy of the task data.-->
         <Task bind:task />
@@ -47,9 +49,7 @@ feeds each entry to a "Task" component-->
 
 
 <style>
-    
     div {
-		padding: 0 1em;
 		margin-bottom: 1em;
 	}
 	@media (min-width: 40em) {

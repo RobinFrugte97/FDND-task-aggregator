@@ -8,7 +8,7 @@
 
 <a href={task.url}>
     <article>
-        <h3>{task.title} </h3>
+        <h4>{task.title}</h4>
         <p><strong>{task.client}</strong></p>
         <div>
             <p>{task.semesterName} /</p>
@@ -25,13 +25,13 @@
 
 <style>
     a {
-        color:var(--text);
+        color:var(--secondary);
     }
     a:hover {
         text-decoration: none;
     }
     article {
-        background-color: white;
+        background-color:var(--highlight-primary);
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -55,9 +55,9 @@
         }
     }
     
-    h3 {
-        font-size: 1.5em;
-        color: var(--primary);
+    h4 {
+        font-size: 1.25em;
+        color: var(--secondary);
         margin-top: 0;
         margin-bottom: .5rem;
     }
@@ -73,6 +73,4 @@
         div p:first-child {
             margin-right:.25rem
         }
-    
-    
 </style>

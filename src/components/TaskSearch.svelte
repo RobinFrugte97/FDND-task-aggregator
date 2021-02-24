@@ -38,7 +38,9 @@
         display:flex;
         justify-content: center;
         align-items: center;
-        margin-bottom: 1em;
+		position: absolute;
+		top:.75rem;
+		right:1rem;
     }
     label {
         color: white;
