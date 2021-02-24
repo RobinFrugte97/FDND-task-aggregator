@@ -1,7 +1,6 @@
 <script>
     export let semesters
 	export let displayTaskList
-
     import FilterSprint from "./FilterSprint.svelte"
 
 </script>
@@ -9,7 +8,7 @@
 {#each semesters as semester}
     <details>
         <summary>Semester {semester}: {displayTaskList.filter(task => task.semester === semester)[0].semesterName}</summary>
-        <FilterSprint bind:semester bind:displayTaskList />
+        <FilterSprint bind:semester bind:displayTaskList/>
     </details>
 {/each}
 
