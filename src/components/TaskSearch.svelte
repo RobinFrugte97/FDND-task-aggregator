@@ -47,7 +47,7 @@
 
 <style>
     form {
-        display:flex;
+        display:none;
         justify-content: center;
         align-items: center;
 		position: absolute;
@@ -82,6 +82,12 @@
     }
     svg {
         transition:.25s;
+    }
+
+    @media (min-width: 40em) {
+        form {
+            display:flex;
+        }
     }
 
 </style>
