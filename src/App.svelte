@@ -26,6 +26,8 @@
 
 		// Add semester and sprint name to the task data list and put it in the search task list array.
 		searchTaskList = getSemesterSprintName(taskList)
+
+		// A list of semester names to be displayed.
 		semesters = getSemesterTitles(taskList)
 
 		// Copy the array of tasks, complete with semester and sprint name to an array that is to be displayed.
@@ -36,16 +38,6 @@
 		Add difficulty property to the taskList
 		*/
 		addDifficulty(displayTaskList)
-
-		/*
-		1.displayTasklist
-		2.sprints
-		3.finalTasks
-		*/
-		
-
-		
-
 	})
 </script>
 
