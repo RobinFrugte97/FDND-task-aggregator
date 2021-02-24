@@ -14,7 +14,6 @@
 
 	// Create a list of sprints, with duplicates removed, to be rendered
     function loadSprints(semester, taskList) {
-		console.log(taskList)
         sprintTasks = []
         sprintTitles = []
         sprintTasks = taskList.filter(task => task.semester === semester)
@@ -48,8 +47,7 @@
 		margin-bottom: 1rem;
 	}
 	h3 {
-		color: var(--primary);
+		color: var(--highlight-secondary);
 		margin-top: 0;
 	}
-    
 </style>
