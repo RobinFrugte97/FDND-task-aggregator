@@ -1,7 +1,8 @@
 <script>
+    import FilterSprint from "./FilterSprint.svelte"
+    
     export let semesters
 	export let displayTaskList
-    import FilterSprint from "./FilterSprint.svelte"
 
 </script>
 
@@ -17,7 +18,16 @@
     section {
         background-color: var(--highlight-secondary);
         border-radius:.4em;
-        padding:0 1rem 1rem;
-        margin-bottom: 1rem;
+        padding:1rem;
+        margin:5rem 0 1rem;
+        position:relative;
+    }
+    h2 {
+        position: absolute;
+        top: -5rem;
+        background: var(--highlight-secondary);
+        padding:1rem;
+        border-radius: .4rem;
+        margin-left: -1rem;
     }
 </style>
