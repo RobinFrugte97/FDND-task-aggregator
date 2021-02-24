@@ -27,12 +27,9 @@
 		// Add semester and sprint name to the task data list and put it in the search task list array.
 		searchTaskList = getSemesterSprintName(taskList)
 		semesters = getSemesterTitles(taskList)
-		console.log(semesters)
 
 		// Copy the array of tasks, complete with semester and sprint name to an array that is to be displayed.
 		displayTaskList = searchTaskList
-		console.log(displayTaskList)
-
 		sprintFilters = createSprintFilters(displayTaskList)
 
 		/*
