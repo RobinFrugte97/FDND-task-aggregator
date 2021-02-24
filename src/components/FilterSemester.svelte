@@ -24,7 +24,7 @@
     }
     h2 {
         position: absolute;
-        top: -5rem;
+        top: -4.7rem;
         background: var(--highlight-secondary);
         padding:1rem;
         border-radius: .4rem;
