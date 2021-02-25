@@ -13,9 +13,11 @@
     {/each}
 </ul>
 
+
+
 <style>
     ul {
-        display: flex;
+        display: none;
         justify-content:flex-start;
         flex-wrap:wrap;
         list-style: none;
