@@ -8,7 +8,7 @@
 
 <a href={task.url}>
     <article>
-        <h4>{task.title}</h4>
+        <h4>{task.title}!</h4>
         <p><strong>{task.client}</strong></p>
         <div>
             <p>{task.semesterName} /</p>
@@ -18,11 +18,13 @@
         <footer>
 
             <p>
-                <svg  class="task-level" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                <svg class="task-level {supportLevels[task["support-level"] -1]}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                     viewBox="0 0 44 44">
-                    <path d="M38.3,21.8c0,9.1-7.4,16.5-16.5,16.5S5.3,30.9,5.3,21.8"/>
-                    <circle cx="22" cy="22" r="16.5"/>
-                    <path d="M5.5,22h33"/>
+                    <path id="duplicate" d="M36.5,14.1c1.3,2.3,2,5,2,7.9c0,9.1-7.4,16.5-16.5,16.5S5.5,31.1,5.5,22c0-2.8,0.7-5.5,2-7.9
+	"/>
+                    <path id="experiment" d="M38.5,22c0,9.1-7.4,16.5-16.5,16.5S5.5,31.1,5.5,22"/>
+                    <path id="extension" d="M36.3,30.2c-2.8,5-8.2,8.3-14.3,8.3c-6.1,0-11.5-3.4-14.3-8.3"/>
+                    <circle id="circle" cx="22" cy="22" r="16.5"/>
                 </svg>
                 <em>{supportLevels[task["support-level"] -1]}</em>
             </p>
@@ -162,16 +164,29 @@
     }
     footer svg.task-level {
         stroke-width: 3;
-        transform: translateY(-3px)
+        stroke:var(--secondary);
+        transform: translateY(-3px);
     }
-    footer svg.task-level path:first-of-type {
-       fill: var(--highlight-secondary)
+    footer svg.voorbeeld {
+        fill: var(--highlight-secondary)
     }
-    
-    footer svg.task-level circle, 
-    footer svg.task-level path:last-of-type{
-        stroke:var(--secondary)
+    footer svg.task-level path {
+        opacity:0;
+        fill:var(--highlight-secondary)
     }
+    footer svg.imitatie path#duplicate,
+    footer svg.experiment path#experiment,
+    footer svg.uitbreiding path#extension {
+        opacity:1;
+
+    }
+    footer svg.task-level path {
+        opacity:0
+    }
+    footer svg.task-level path {
+        opacity:0
+    }
+
 
 
 </style>
