@@ -17,17 +17,27 @@
 <style>
     section {
         background-color: var(--highlight-secondary);
-        border-radius:.4em;
-        padding:1rem;
-        margin:5rem 0 1rem;
+        
+        padding:0;
+        
         position:relative;
     }
     h2 {
-        position: absolute;
-        top: -4.7rem;
         background: var(--highlight-secondary);
         padding:1rem;
         border-radius: .4rem;
-        margin-left: -1rem;
     }
+
+    @media (min-width: 40em) {
+		section {
+			padding:1rem;
+            border-radius:.4em;
+            margin:5rem 0 1rem;
+		}
+        h2 {
+            position: absolute;
+            top: -4.7rem;
+            margin-left: -1rem;
+        }
+	}
 </style>
