@@ -19,7 +19,7 @@ html, body {
 body {
 	background: var(--secondary);
 	margin: 0;
-	padding: 1em;
+	padding:1em 0 0;
 	box-sizing: border-box;
 	font-family: open sans, sans-serif;
 }
@@ -69,5 +69,7 @@ button {
   }
 
 @media (min-width: 40em) {
-
+	body {
+		padding: 1em;
+	}
 }

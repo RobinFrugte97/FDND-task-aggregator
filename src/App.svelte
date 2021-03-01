@@ -88,18 +88,5 @@
 		header {
 			flex-direction: row;
 		}
-		/* main {
-			display: grid;
-			grid-template-columns: 1fr 1fr;
-			grid-gap: 1em;
-			padding: 0;
-		} */
 	}
-
-	@media (min-width: 60em) {
-		/* main {
-			grid-template-columns: 1fr 1fr 1fr;
-		} */
-	}
-	
 </style>
