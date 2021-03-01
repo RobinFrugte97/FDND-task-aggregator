@@ -5,10 +5,12 @@
 
     export let searchTerm
     export let taskTitles
+
+    let isActive = false
     
 </script>
 
-<form action="#">
+<form action="#" class:active={isActive}>
     <fieldset>
         <legend class="visually-hidden">Zoek taken</legend>
     
@@ -36,41 +38,61 @@
         </datalist>
     </fieldset>
 
-    <button>
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <button on:click|preventDefault={() => isActive = !isActive}>
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" viewBox="-4 -4 32 32" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
             <circle cx="10" cy="10" r="7" />
             <line x1="21" y1="21" x2="15" y2="15" />
         </svg>
+
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-x" viewBox="3 3 18 18" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M10 10l4 4m0 -4l-4 4" />
+          </svg>
     </button>
 </form>
 
 <style>
     form {
-        display:none;
-        justify-content: center;
+        display:flex;
+        justify-content: flex-end;
         align-items: center;
 		position: absolute;
-		top:-4.5rem;
-		right:0rem;
+		top:.5rem;
+		right:1rem;
+        width:calc(100% - 2rem)
     }
     fieldset {
         border:none;
         display:flex;
         align-items:center;
-        margin-right:0;
+        margin-right:.5rem;
+        margin-left:-2px;
         padding-right:0;
+        opacity:0;
+        transition:.25s;
+        background-color: var(--secondary);
+        justify-self: stretch;
+        flex-grow: 1;
+        flex-shrink:0;
+    }
+    form.active fieldset {
+        opacity:1;
     }
     label {
-        color: var(--highlight-secondary);
+        color: var(--primary);
         margin-right: .5em;
         margin-bottom: 0;
         white-space: nowrap;
     }
     input {
-        width: 30vw;
         margin-bottom: 0;
-        border:none
+        border:none;
+        width:100%;
+        pointer-events:none;
+    }
+    form.active input {
+        pointer-events:all
     }
     form > button {
         border:none;
@@ -78,15 +100,31 @@
         width:2rem;
         height:2rem;
         position:relative;
-        display:none;
+        background-color: var(--primary);
     }
     svg {
+        position:absolute;
+        right:0;
+        top:0;
         transition:.25s;
     }
+    svg.icon-tabler-circle-x, 
+    form.active svg.icon-tabler-search {
+        opacity:0;
+        pointer-events:none;
+    }
+    form.active svg.icon-tabler-circle-x {
+        opacity:1;
+    }
 
-    @media (min-width: 40em) {
+    @media (min-width: 45em) {
         form {
-            display:flex;
+            top:-4.5rem;
+		    right:0;
+            width:auto;
+        }
+        input {
+            width:30vw;
         }
     }
 

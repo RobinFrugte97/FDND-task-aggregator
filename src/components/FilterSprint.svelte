@@ -32,7 +32,7 @@
 {#if showSprints}
 	{#each sprintTitles as sprint}
 		<section>
-			<h3>{ sprint } </h3>
+			<h3>Sprint: { sprint } </h3>
 				<TaskList bind:sprint bind:semesterTasks bind:displayTaskList/>
 		</section>
 	{/each}

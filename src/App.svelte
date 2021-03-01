@@ -42,7 +42,7 @@
 </script>
 
 <header>
-	<h1>FDND <em>Tasks</em></h1>
+	<h1>Frontend Design & Development <em>Taken</em></h1>
 	<!--Tasksort component, with a function the fires on every change of the value.-->
 	<TaskSort bind:selected on:updateSort={
 		() => {
@@ -65,15 +65,14 @@
 		align-items: center;
 	}
 	h1 {
-		color: var(--highlight-primary);
-		font-family: sans-serif;
+		color: var(--primary);
 		font-size: 3em;
-		font-weight: bold;
+		font-weight: normal;
+		line-height:1.5;
 		margin: 0;
-		white-space: nowrap;
 	}
 	h1 em {
-		background-color:var(--highlight-primary);
+		background-color:var(--primary);
 		color:var(--secondary);
 		font-style: normal;
 		border-radius: .4rem;
