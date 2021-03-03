@@ -8,7 +8,7 @@
 
 <a href={task.url}>
     <article>
-        <h4>{task.title}!</h4>
+        <h4>{task.title}</h4>
         <p><strong>{task.client}</strong></p>
         <div>
             <p>{task.semesterName} /</p>
