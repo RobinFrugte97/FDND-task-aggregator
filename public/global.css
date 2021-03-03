@@ -68,6 +68,15 @@ button {
 	width: 1px;
   }
 
+  svg {
+	width:1.75rem;
+	stroke: var(--secondary);
+	stroke-width:1.5;
+	fill:none;
+	stroke-linecap:round; 
+	stroke-linejoin: round;
+}
+
 @media (min-width: 40em) {
 	body {
 		padding: 1em;
