@@ -69,7 +69,7 @@
 		font-size: 3em;
 		font-weight: normal;
 		line-height:1.5;
-		margin: 0;
+		margin: 0 1rem;
 	}
 	h1 em {
 		background-color:var(--primary);
@@ -86,6 +86,9 @@
 	@media (min-width: 40em) {
 		header {
 			flex-direction: row;
+		}
+		h1 {
+			margin:0;
 		}
 	}
 </style>

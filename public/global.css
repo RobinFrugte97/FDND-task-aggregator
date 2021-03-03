@@ -21,7 +21,7 @@ body {
 	margin: 0;
 	padding:1em 0 0;
 	box-sizing: border-box;
-	font-family: "Open Sans";
+	font-family: "Open Sans", sans-serif;
 }
 
 a {
@@ -67,6 +67,15 @@ button {
 	white-space: nowrap;
 	width: 1px;
   }
+
+  svg {
+	width:1.75rem;
+	stroke: var(--secondary);
+	stroke-width:1.5;
+	fill:none;
+	stroke-linecap:round; 
+	stroke-linejoin: round;
+}
 
 @media (min-width: 40em) {
 	body {

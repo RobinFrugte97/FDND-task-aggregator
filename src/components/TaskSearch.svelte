@@ -39,7 +39,7 @@
     </fieldset>
 
     <button on:click|preventDefault={() => isActive = !isActive}>
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" viewBox="-4 -4 32 32" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
             <circle cx="10" cy="10" r="7" />
             <line x1="21" y1="21" x2="15" y2="15" />
@@ -59,8 +59,8 @@
         align-items: center;
 		position: absolute;
 		top:.5rem;
-		right:1rem;
-        width:calc(100% - 2rem)
+		right:2.5rem;
+        width:calc(100% - 3rem)
     }
     fieldset {
         border:none;
@@ -100,13 +100,14 @@
         width:2rem;
         height:2rem;
         position:relative;
-        background-color: var(--primary);
+        background-color: transparent;
     }
     svg {
         position:absolute;
         right:0;
-        top:0;
+        top:.15rem;
         transition:.25s;
+        stroke: var(--primary)
     }
     svg.icon-tabler-circle-x, 
     form.active svg.icon-tabler-search {
@@ -119,9 +120,12 @@
 
     @media (min-width: 45em) {
         form {
-            top:-4.5rem;
-		    right:0;
-            width:auto;
+            top: .5rem;
+            right: 3rem;
+            width: auto;
+        }
+        fieldset {
+            background-color: transparent;
         }
         input {
             width:30vw;

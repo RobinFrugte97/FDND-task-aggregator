@@ -51,13 +51,15 @@
 
 <style>
     div {
-		margin-bottom: 1em;
+		margin: 1rem 0 1rem;
+		padding-top: .25rem;
 	}
 	@media (min-width: 40em) {
 		div{
 			display: grid;
 			grid-template-columns: 1fr 1fr;
 			grid-gap: 1em;
+			
 		}
 	}
 

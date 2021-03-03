@@ -8,7 +8,7 @@
 
 <a href={task.url}>
     <article>
-        <h4>{task.title}!</h4>
+        <h4>{task.title}</h4>
         <p><strong>{task.client}</strong></p>
         <div>
             <p>{task.semesterName} /</p>
@@ -154,14 +154,7 @@
             padding:0;
             margin:0
         }
-    svg {
-        width:1.75rem;
-        stroke: var(--secondary);
-        stroke-width:1.5;
-        fill:none;
-        stroke-linecap:round; 
-        stroke-linejoin: round;
-    }
+    
     footer svg.task-level {
         stroke-width: 3;
         stroke:var(--secondary);
