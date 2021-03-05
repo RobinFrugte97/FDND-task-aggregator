@@ -41,7 +41,6 @@
 		Add difficulty property to the taskList
 		*/
 		addDifficulty(displayTaskList)
-		console.log(semesters)
 	})
 </script>
 

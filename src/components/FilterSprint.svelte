@@ -20,7 +20,7 @@
         semesterTasks = taskList.filter(task => task.semester === semester)
 
 		// Create a list of sprint titles. Duplicates to be removed
-        semesterTasks.map(sprint => sprintTitles.push(sprint.sprintName))
+        semesterTasks.forEach(sprint => sprintTitles.push(sprint.sprintName))
 
 		// Allow the sprints to be displayed
         showSprints = true
@@ -31,7 +31,7 @@
 </script>
 {#if showSprints}
 	{#each sprintTitles as sprint}
-		<Sprint bind:sprint bind:semesterTasks bind:displayTaskList />
+		<Sprint bind:sprint bind:semesterTasks />
 	{/each}
 {/if}
 
