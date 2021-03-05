@@ -12,7 +12,7 @@
 
 <section class:active={isActive}>
     <h3>
-        Sprint: { sprint } 
+        Sprint: <strong>{ sprint }</strong>
         <button on:click|preventDefault={() => isActive = !isActive}>
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-down" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -36,9 +36,11 @@
 		
 	}
 	h3 {
-		color: var(--highlight-secondary);
+		color: var(--primary);
 		margin: 0 0 .5rem;
+		font-weight: normal;
 	}
+	
 
 	button {
         border:none;
@@ -59,12 +61,10 @@
 	}
 	section :global(form) {
 		opacity:0;
-		transform: translateY(-2rem);
 		transition: .25s .35s;
 	}
 	section.active :global(form)  {
 		opacity:1;
-		transform: translateY(0);
 	}
 	svg {
 		stroke: var(--primary);
