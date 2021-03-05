@@ -44,8 +44,7 @@ graphqlWithAuth(`{
         ...fm(task.description.text).attributes,
         repository: task.name,
         topics: task.repositoryTopics.edges.map(edge => edge.node.topic.name),
-        url: task.url,
-        forks: task.forkCount
+        url: task.url
       })
     })
   })
