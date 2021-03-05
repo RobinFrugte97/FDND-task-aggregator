@@ -7,25 +7,70 @@
 
     export let semesterTasks
     export let sprint
+	export let semester
 	export let displayTaskList
 
     let finalTasks = []
     let searchTerm = ""
+	let taskTitles = []
+	let dummyData = {
+		"client": "FDND",
+		"semesterName": displayTaskList.filter(task => task.semester === semester)[0].semesterName,
+		"sprintName": sprint,
+		"support-level": 1,
+		"tags": ["semantiek", "responsive design", "ui-interacties", "html", "css", "javascript"],
+		"title": "Task",
+		"url": "https://github.com/fdnd-task/fdnd-net-presence-example"
+	}
 
-    // Create a list of titles for the datalist search
-	let taskTitles = getTaskTitles(displayTaskList)
-
+	
     // Filter the list of tasks based on the given sprint. 
     const filter = (value) => filterBySprint(value, semesterTasks)
 	
 	function filterBySprint(value, taskList) {
 		// Filter all semester tasks based on the current sprint name.
 		const filteredTaskList = taskList.filter(task => task.sprintName === value)
+		
+		// Create a list of titles
+		taskTitles = getTaskTitles(filteredTaskList)
 
 		return finalTasks = filteredTaskList
 	}
-    filter(sprint)
-	console.log(filter(sprint))
+	
+	function sortSprintTasks(taskList) {
+		// Create an object for each task
+		let base = taskTitles.map(title => {
+			return {
+				"title": title,
+				"taskList": []
+			}
+		})
+		// Add dummydata
+		if (taskList.length < 12) {
+			base.push({
+				"title": "Task",
+				"taskList": []
+			})
+			while(taskList.length < 12) {
+				taskList.push(dummyData)
+			}
+		}
+		// Put all tasks in the correct task array
+		taskList.forEach(task => {
+			base.forEach(e => {
+				if(e.title == task.title) {
+					e.taskList.push(task)
+				}
+			})
+		})
+		// Sort the task arrays based on support level
+		base.forEach(task =>
+				task.taskList.sort((a, b) => a["support-level"] - b["support-level"])
+		)
+
+		return finalTasks = base
+	}
+    sortSprintTasks(filter(sprint))
 </script>
 
 <!-- Sprint specific search form-->
@@ -39,9 +84,12 @@
 
 <div>
 	<!--Svelte each-block. This loops through the array of data and feeds each entry to a "Task" component-->
-    {#each finalTasks as task}
-        <!--Task component, with a copy of the task data.-->
-        <Task bind:task />
+    {#each finalTasks as group}
+		<!-- Group can be used to stack cards for example -->
+		{#each group.taskList as task}
+			<!--Task component, with a copy of the task data.-->
+			<Task bind:task />
+    	{/each}
     {:else}
         <!--This "else" is shown if displayTaskList is empty or otherwise not compatible 
         with the each-block.-->

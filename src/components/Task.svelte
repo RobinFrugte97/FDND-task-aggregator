@@ -3,16 +3,21 @@
     export let task
     
     const supportLevels = ["voorbeeld", "imitatie", "experiment", "uitbreiding", "autonoom"]
+    const {url, title, client, semesterName, sprintName} = task
+
+    function sanitizeClassName (className) {
+        return className.replace(/ /g, "-").toLowerCase()
+    }
 </script>
 
 
-<a href={task.url}>
-    <article>
-        <h4>{task.title}</h4>
-        <p><strong>{task.client}</strong></p>
+<a href={url}>
+    <article class={sanitizeClassName(title)}>
+        <h4>{title}</h4>
+        <p><strong>{client}</strong></p>
         <div>
-            <p>{task.semesterName} /</p>
-            <p> {task.sprintName}</p>
+            <p>{semesterName} /</p>
+            <p> {sprintName}</p>
         </div>
         
         <footer>
@@ -20,8 +25,7 @@
             <p>
                 <svg class="task-level {supportLevels[task["support-level"] -1]}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                     viewBox="0 0 44 44">
-                    <path id="duplicate" d="M36.5,14.1c1.3,2.3,2,5,2,7.9c0,9.1-7.4,16.5-16.5,16.5S5.5,31.1,5.5,22c0-2.8,0.7-5.5,2-7.9
-	"/>
+                    <path id="duplicate" d="M36.5,14.1c1.3,2.3,2,5,2,7.9c0,9.1-7.4,16.5-16.5,16.5S5.5,31.1,5.5,22c0-2.8,0.7-5.5,2-7.9"/>
                     <path id="experiment" d="M38.5,22c0,9.1-7.4,16.5-16.5,16.5S5.5,31.1,5.5,22"/>
                     <path id="extension" d="M36.3,30.2c-2.8,5-8.2,8.3-14.3,8.3c-6.1,0-11.5-3.4-14.3-8.3"/>
                     <circle id="circle" cx="22" cy="22" r="16.5"/>
@@ -89,6 +93,20 @@
     }
     article:hover {
         transform: scale(1.025);
+    }
+    
+    article.task {
+        filter:grayscale(1) brightness(2.5);
+        opacity:.2;
+    }
+    article.task:hover {
+        transform: scale(1);
+    }
+    article.task * {
+        text-indent:-666em;
+    }
+    article.task svg {
+        opacity:0
     }
     @media (min-width:40em) {
         a {
