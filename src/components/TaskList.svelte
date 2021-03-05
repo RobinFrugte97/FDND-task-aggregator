@@ -44,6 +44,7 @@
 				"taskList": []
 			}
 		})
+		// Add dummydata
 		if (taskList.length < 12) {
 			base.push({
 				"title": "Task",
@@ -53,7 +54,6 @@
 				taskList.push(dummyData)
 			}
 		}
-		console.log(taskList, base)
 		// Put all tasks in the correct task array
 		taskList.forEach(task => {
 			base.forEach(e => {
