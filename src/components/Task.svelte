@@ -1,12 +1,17 @@
 <script>
     import Tags from "./Tags.svelte"
+
     export let task
+    export let group
+
+    let marginCalculator = group.taskList.indexOf(task)+1
     
     const supportLevels = ["voorbeeld", "imitatie", "experiment", "uitbreiding", "autonoom"]
+    const z = [5,4,3,2,1]
 </script>
 
 
-<a href={task.url}>
+<a href={task.url} style="margin-left: {marginCalculator/2-0.5}em;margin-top: {marginCalculator/4-.25}em;z-index: {z[marginCalculator-1]};">
     <article>
         <h4>{task.title}</h4>
         <p><strong>{task.client}</strong></p>
@@ -72,6 +77,7 @@
 <style>
     a {
         color:var(--secondary);
+        position: absolute;
     }
     a:hover {
         text-decoration: none;
@@ -85,6 +91,8 @@
         border-radius: .4em;
         transition:.25s;
         margin-bottom: 1em;
+        box-shadow: 3px 3px 26px -13px rgba(0,0,0,0.75);
+        width: 20em;
         
     }
     article:hover {

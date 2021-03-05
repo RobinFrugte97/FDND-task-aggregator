@@ -22,7 +22,6 @@
 		"title": "Task",
 		"url": "https://github.com/fdnd-task/fdnd-net-presence-example"
 	}
-
 	
     // Filter the list of tasks based on the given sprint. 
     const filter = (value) => filterBySprint(value, semesterTasks)
@@ -38,7 +37,7 @@
 	}
 	function sortSprintTasks(taskList) {
 		// Create an object for each task
-		let base = taskTitles.map(title => {
+		let groups = taskTitles.map(title => {
 			return {
 				"title": title,
 				"taskList": []
@@ -46,7 +45,7 @@
 		})
 		// Add dummydata
 		if (taskList.length < 12) {
-			base.push({
+			groups.push({
 				"title": "Task",
 				"taskList": []
 			})
@@ -56,19 +55,17 @@
 		}
 		// Put all tasks in the correct task array
 		taskList.forEach(task => {
-			base.forEach(e => {
-				if(e.title == task.title) {
-					e.taskList.push(task)
+			groups.forEach(group => {
+				if(group.title == task.title) {
+					group.taskList.push(task)
 				}
 			})
 		})
 		// Sort the task arrays based on support level
-		base.forEach(task =>
+		groups.forEach(task =>
 				task.taskList.sort((a, b) => a["support-level"] - b["support-level"])
 		)
-
-		console.log(base)
-		return finalTasks = base
+		return finalTasks = groups
 	}
     sortSprintTasks(filter(sprint))
 </script>
@@ -82,29 +79,35 @@
 }/>
 
 
-<div>
+<main>
 	<!--Svelte each-block. This loops through the array of data and feeds each entry to a "Task" component-->
     {#each finalTasks as group}
 		<!-- Group can be used to stack cards for example -->
-		{#each group.taskList as task}
+		<div id="stack">
+			{#each group.taskList as task}
 			<!--Task component, with a copy of the task data.-->
-			<Task bind:task />
+			<Task bind:task bind:group />
     	{/each}
+		</div>
+		
     {:else}
         <!--This "else" is shown if displayTaskList is empty or otherwise not compatible 
         with the each-block.-->
         <p>No result...</p>
     {/each}
-</div>
+</main>
 
 
 <style>
-    div {
+	#stack {
+		height: 10em;
+	}
+    main {
 		margin: 1rem 0 1rem;
 		padding-top: .25rem;
 	}
 	@media (min-width: 40em) {
-		div{
+		main{
 			display: grid;
 			grid-template-columns: 1fr 1fr;
 			grid-gap: 1em;
@@ -113,7 +116,7 @@
 	}
 
 	@media (min-width: 60em) {
-		div {
+		main {
 			grid-template-columns: 1fr 1fr 1fr;
 		}
 	}
