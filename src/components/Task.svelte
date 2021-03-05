@@ -121,7 +121,6 @@
         }
     footer {
         background-color: rgba(0,0,0,0.1);
-        /background-color: var(--highlight-secondary);
         width:calc(100% + 2rem);
         margin:1em -1rem -.5rem;
         padding:.5em 1rem 0;
