@@ -36,6 +36,7 @@
 
 		return finalTasks = filteredTaskList
 	}
+	
 	function sortSprintTasks(taskList) {
 		// Create an object for each task
 		let base = taskTitles.map(title => {
@@ -67,7 +68,6 @@
 				task.taskList.sort((a, b) => a["support-level"] - b["support-level"])
 		)
 
-		console.log(base)
 		return finalTasks = base
 	}
     sortSprintTasks(filter(sprint))
