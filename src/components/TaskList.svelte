@@ -25,6 +25,7 @@
 		return finalTasks = filteredTaskList
 	}
     filter(sprint)
+	console.log(filter(sprint))
 </script>
 
 <!-- Sprint specific search form-->

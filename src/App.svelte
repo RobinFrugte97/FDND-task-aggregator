@@ -30,6 +30,9 @@
 		// A list of semester names to be displayed.
 		semesters = getSemesterTitles(taskList)
 
+		// Sort semesters in numerical order
+		semesters.sort((a, b) => a-b)
+
 		// Copy the array of tasks, complete with semester and sprint name to an array that is to be displayed.
 		displayTaskList = searchTaskList
 		sprintFilters = createSprintFilters(displayTaskList)
@@ -38,6 +41,7 @@
 		Add difficulty property to the taskList
 		*/
 		addDifficulty(displayTaskList)
+		console.log(semesters)
 	})
 </script>
 

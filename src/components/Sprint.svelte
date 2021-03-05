@@ -78,10 +78,5 @@
 			border-radius: .4em;
 			margin-bottom: 1rem;
 		}
-        h2 {
-            position: absolute;
-            top: -4.7rem;
-            margin-left: -1rem;
-        }
 	}
 </style>
