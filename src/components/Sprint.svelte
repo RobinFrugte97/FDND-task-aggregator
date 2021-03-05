@@ -59,12 +59,10 @@
 	}
 	section :global(form) {
 		opacity:0;
-		transform: translateY(-2rem);
 		transition: .25s .35s;
 	}
 	section.active :global(form)  {
 		opacity:1;
-		transform: translateY(0);
 	}
 	svg {
 		stroke: var(--primary);
