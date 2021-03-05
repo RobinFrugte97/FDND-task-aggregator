@@ -3,6 +3,8 @@
 
     export let sprint
     export let semesterTasks
+	export let semester
+	export let displayTaskList
 
 	let isActive = false
 
@@ -21,7 +23,7 @@
         </button>
     </h3>
 
-    <TaskList bind:sprint bind:semesterTasks />
+    <TaskList bind:sprint bind:semesterTasks bind:semester bind:displayTaskList />
     
 </section>
 

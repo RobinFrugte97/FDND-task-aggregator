@@ -7,11 +7,21 @@
 
     export let semesterTasks
     export let sprint
+	export let semester
+	export let displayTaskList
 
     let finalTasks = []
     let searchTerm = ""
 	let taskTitles = []
-
+	let dummyData = {
+		"client": "FDND",
+		"semesterName": displayTaskList.filter(task => task.semester === semester)[0].semesterName,
+		"sprintName": sprint,
+		"support-level": 1,
+		"tags": ["semantiek", "responsive design", "ui-interacties", "html", "css", "javascript"],
+		"title": "Task",
+		"url": "https://github.com/fdnd-task/fdnd-net-presence-example"
+	}
 
 	
     // Filter the list of tasks based on the given sprint. 
@@ -31,21 +41,33 @@
 		let base = taskTitles.map(title => {
 			return {
 				"title": title,
-				"tasks": []
+				"taskList": []
 			}
 		})
+		if (taskList.length < 12) {
+			base.push({
+				"title": "Task",
+				"taskList": []
+			})
+			while(taskList.length < 12) {
+				taskList.push(dummyData)
+			}
+		}
+		console.log(taskList, base)
 		// Put all tasks in the correct task array
 		taskList.forEach(task => {
 			base.forEach(e => {
 				if(e.title == task.title) {
-					e.tasks.push(task)
+					e.taskList.push(task)
 				}
 			})
 		})
 		// Sort the task arrays based on support level
 		base.forEach(task =>
-				task.tasks.sort((a, b) => a["support-level"] - b["support-level"])
+				task.taskList.sort((a, b) => a["support-level"] - b["support-level"])
 		)
+
+		console.log(base)
 		return finalTasks = base
 	}
     sortSprintTasks(filter(sprint))
@@ -64,7 +86,7 @@
 	<!--Svelte each-block. This loops through the array of data and feeds each entry to a "Task" component-->
     {#each finalTasks as group}
 		<!-- Group can be used to stack cards for example -->
-		{#each group.tasks as task}
+		{#each group.taskList as task}
 			<!--Task component, with a copy of the task data.-->
 			<Task bind:task />
     	{/each}

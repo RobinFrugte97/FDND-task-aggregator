@@ -31,7 +31,7 @@
 </script>
 {#if showSprints}
 	{#each sprintTitles as sprint}
-		<Sprint bind:sprint bind:semesterTasks />
+		<Sprint bind:semester bind:sprint bind:semesterTasks bind:displayTaskList />
 	{/each}
 {/if}
 
