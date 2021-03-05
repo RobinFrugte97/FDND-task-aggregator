@@ -132,7 +132,7 @@
     div {
         width:100%;
         display:flex;
-        margin: .5rem 0 .25rem;
+        margin: .5rem 0 1.25rem;
     }
         div p:first-child {
             margin-right:.25rem
@@ -140,7 +140,7 @@
     footer {
         background-color: rgba(0,0,0,0.1);
         width:calc(100% + 2rem);
-        margin:1em -1rem -.5rem;
+        margin:auto -1rem -.5rem;
         padding:.5em 1rem 0;
         display:flex;
         justify-content: space-between;
