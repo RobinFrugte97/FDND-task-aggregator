@@ -43,13 +43,10 @@
 			})
 		})
 		// Sort the task arrays based on support level
-		base.forEach(task => 
-			console.log(
+		base.forEach(task =>
 				task.tasks.sort((a, b) => a["support-level"] - b["support-level"])
-			)
 		)
 		return finalTasks = base
-
 	}
     sortSprintTasks(filter(sprint))
 </script>

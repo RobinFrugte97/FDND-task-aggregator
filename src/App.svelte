@@ -57,7 +57,7 @@
 <main>
 	<!--Tasklist component, with a copy of the task data bound to it.-->
 	<!-- <TaskList bind:displayTaskList/> -->
-	<FilterSemester bind:semesters bind:displayTaskList bind:taskList/>
+	<FilterSemester bind:semesters bind:displayTaskList />
 </main>
 
 <style>
