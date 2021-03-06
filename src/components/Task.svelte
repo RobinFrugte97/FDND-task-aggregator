@@ -3,81 +3,83 @@
 
     export let task
     export let group
+    export let relative
 
-    let marginCalculator = group.taskList.indexOf(task)+1
+
+    let marginCalculator
+    if(group) {
+        marginCalculator = group.taskList.indexOf(task)+1
+    }
     
     const supportLevels = ["voorbeeld", "imitatie", "experiment", "uitbreiding", "autonoom"]
     const z = [5,4,3,2,1]
 </script>
 
+<article style="position: {relative ? "relative" : "absolute"}; margin-left: {marginCalculator/2-0.5}em;margin-top: {marginCalculator/4-.25}em;z-index: {z[marginCalculator-1]};">
+    <h4>{task.title}</h4>
+    <p><strong>{task.client}</strong></p>
+    <div>
+        <p>{task.semesterName} /</p>
+        <p> {task.sprintName}</p>
+    </div>
+    
+    <footer>
 
-<a href={task.url} style="margin-left: {marginCalculator/2-0.5}em;margin-top: {marginCalculator/4-.25}em;z-index: {z[marginCalculator-1]};">
-    <article>
-        <h4>{task.title}</h4>
-        <p><strong>{task.client}</strong></p>
-        <div>
-            <p>{task.semesterName} /</p>
-            <p> {task.sprintName}</p>
-        </div>
-        
-        <footer>
+        <p>
+            <svg class="task-level {supportLevels[task["support-level"] -1]}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                viewBox="0 0 44 44">
+                <path id="duplicate" d="M36.5,14.1c1.3,2.3,2,5,2,7.9c0,9.1-7.4,16.5-16.5,16.5S5.5,31.1,5.5,22c0-2.8,0.7-5.5,2-7.9
+"/>
+                <path id="experiment" d="M38.5,22c0,9.1-7.4,16.5-16.5,16.5S5.5,31.1,5.5,22"/>
+                <path id="extension" d="M36.3,30.2c-2.8,5-8.2,8.3-14.3,8.3c-6.1,0-11.5-3.4-14.3-8.3"/>
+                <circle id="circle" cx="22" cy="22" r="16.5"/>
+            </svg>
+            <em>{supportLevels[task["support-level"] -1]}</em>
+        </p>
 
-            <p>
-                <svg class="task-level {supportLevels[task["support-level"] -1]}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                    viewBox="0 0 44 44">
-                    <path id="duplicate" d="M36.5,14.1c1.3,2.3,2,5,2,7.9c0,9.1-7.4,16.5-16.5,16.5S5.5,31.1,5.5,22c0-2.8,0.7-5.5,2-7.9
-	"/>
-                    <path id="experiment" d="M38.5,22c0,9.1-7.4,16.5-16.5,16.5S5.5,31.1,5.5,22"/>
-                    <path id="extension" d="M36.3,30.2c-2.8,5-8.2,8.3-14.3,8.3c-6.1,0-11.5-3.4-14.3-8.3"/>
-                    <circle id="circle" cx="22" cy="22" r="16.5"/>
-                </svg>
-                <em>{supportLevels[task["support-level"] -1]}</em>
-            </p>
-
-            <ul>
-                <li>
-                    <button>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-checkbox" viewBox="0 0 24 24">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                            <polyline points="9 11 12 14 20 6" />
-                            <path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9" />
+        <ul>
+            <li>
+                <button>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-checkbox" viewBox="0 0 24 24">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <polyline points="9 11 12 14 20 6" />
+                        <path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9" />
+                    </svg>
+                </button>
+            </li>
+            <li>
+                <button>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-git-fork" viewBox="0 0 24 24">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <circle cx="12" cy="18" r="2" />
+                        <circle cx="7" cy="6" r="2" />
+                        <circle cx="17" cy="6" r="2" />
+                        <path d="M7 8v2a2 2 0 0 0 2 2h6a2 2 0 0 0 2 -2v-2" />
+                        <line x1="12" y1="12" x2="12" y2="16" />
                         </svg>
-                    </button>
-                </li>
-                <li>
-                    <button>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-git-fork" viewBox="0 0 24 24">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                            <circle cx="12" cy="18" r="2" />
-                            <circle cx="7" cy="6" r="2" />
-                            <circle cx="17" cy="6" r="2" />
-                            <path d="M7 8v2a2 2 0 0 0 2 2h6a2 2 0 0 0 2 -2v-2" />
-                            <line x1="12" y1="12" x2="12" y2="16" />
-                          </svg>
-                    </button>
-                </li>
-                <li>
-                    <button>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag"  viewBox="0 0 24 24">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                            <path d="M11 3l9 9a1.5 1.5 0 0 1 0 2l-6 6a1.5 1.5 0 0 1 -2 0l-9 -9v-4a4 4 0 0 1 4 -4h4" />
-                            <circle cx="9" cy="9" r="2" />
-                        </svg>
-                    </button>
-                </li>
-            </ul>
-            <!--Tags component, with a copy of the taglist data.-->
-            <Tags bind:task/>
-        </footer>
-        
-    </article>
-</a>
+                </button>
+            </li>
+            <li>
+                <button>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag"  viewBox="0 0 24 24">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M11 3l9 9a1.5 1.5 0 0 1 0 2l-6 6a1.5 1.5 0 0 1 -2 0l-9 -9v-4a4 4 0 0 1 4 -4h4" />
+                        <circle cx="9" cy="9" r="2" />
+                    </svg>
+                </button>
+            </li>
+        </ul>
+        <!--Tags component, with a copy of the taglist data.-->
+        <Tags bind:task/>
+    </footer>
+    
+</article>
+
 
 
 <style>
     a {
         color:var(--secondary);
-        position: absolute;
     }
     a:hover {
         text-decoration: none;
@@ -93,7 +95,7 @@
         margin-bottom: 1em;
         box-shadow: 3px 3px 26px -13px rgba(0,0,0,0.75);
         width: 20em;
-        
+        cursor: pointer;
     }
     article:hover {
         transform: scale(1.025);
@@ -104,8 +106,6 @@
         }
         article {
             margin: 0;
-            height:100%;
-            
         }
     }
     
@@ -124,9 +124,9 @@
         display:flex;
         margin: .5rem 0 .25rem;
     }
-        div p:first-child {
-            margin-right:.25rem
-        }
+    div p:first-child {
+        margin-right:.25rem
+    }
     footer {
         background-color: rgba(0,0,0,0.1);
         width:calc(100% + 2rem);
@@ -137,31 +137,30 @@
         align-items: center;
         border-radius: 0 0 .4rem .4rem;
     }
-        footer p {
-            display:flex;
-            align-items: center;
-        }
-        footer p em {
-            font-style: normal;
-            margin: .25rem;
-        }
-        footer ul {
-            list-style: none;
-            padding:0;
-            margin:0;
-            display:flex;
-            align-items:center;
-        }
-        footer ul li {
-            margin: .25rem;
-        }
-        footer button {
-            background-color: transparent;
-            border:none;
-            padding:0;
-            margin:0
-        }
-    
+    footer p {
+        display:flex;
+        align-items: center;
+    }
+    footer p em {
+        font-style: normal;
+        margin: .25rem;
+    }
+    footer ul {
+        list-style: none;
+        padding:0;
+        margin:0;
+        display:flex;
+        align-items:center;
+    }
+    footer ul li {
+        margin: .25rem;
+    }
+    footer button {
+        background-color: transparent;
+        border:none;
+        padding:0;
+        margin:0
+    }
     footer svg.task-level {
         stroke-width: 3;
         stroke:var(--secondary);
@@ -186,7 +185,4 @@
     footer svg.task-level path {
         opacity:0
     }
-
-
-
 </style>

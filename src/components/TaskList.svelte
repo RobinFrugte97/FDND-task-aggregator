@@ -3,14 +3,15 @@
 	import { getTaskTitles } from "../../public/js/getTaskTitles.js"
 
     import Task from "./Task.svelte"
-	import TaskSearch from "../components/TaskSearch.svelte"
+    import TaskSelection from "./TaskSelection.svelte"
+	import TaskSearch from "./TaskSearch.svelte"
 
     export let semesterTasks
     export let sprint
 	export let semester
 	export let displayTaskList
 
-    let finalTasks = []
+    let finalTasks = {tasks: [], dummy: {"title": "Task", "taskList": []}}
     let searchTerm = ""
 	let taskTitles = []
 	let dummyData = {
@@ -22,6 +23,9 @@
 		"title": "Task",
 		"url": "https://github.com/fdnd-task/fdnd-net-presence-example"
 	}
+	let selection = []
+	let isActive = false
+	let relative = true
 	
     // Filter the list of tasks based on the given sprint. 
     const filter = (value) => filterBySprint(value, semesterTasks)
@@ -33,7 +37,7 @@
 		// Create a list of titles
 		taskTitles = getTaskTitles(filteredTaskList)
 
-		return finalTasks = filteredTaskList
+		return finalTasks.tasks = filteredTaskList
 	}
 	function sortSprintTasks(taskList) {
 		// Create an object for each task
@@ -43,16 +47,7 @@
 				"taskList": []
 			}
 		})
-		// Add dummydata
-		if (taskList.length < 12) {
-			groups.push({
-				"title": "Task",
-				"taskList": []
-			})
-			while(taskList.length < 12) {
-				taskList.push(dummyData)
-			}
-		}
+		
 		// Put all tasks in the correct task array
 		taskList.forEach(task => {
 			groups.forEach(group => {
@@ -63,11 +58,18 @@
 		})
 		// Sort the task arrays based on support level
 		groups.forEach(task =>
-				task.taskList.sort((a, b) => a["support-level"] - b["support-level"])
+			task.taskList.sort((a, b) => a["support-level"] - b["support-level"])
 		)
-		return finalTasks = groups
+		let counter = groups.length
+		// Add dummydata
+		while(counter < 12) {
+			counter++
+			finalTasks.dummy.taskList.push(dummyData)
+		}
+		return finalTasks.tasks = groups
 	}
     sortSprintTasks(filter(sprint))
+	console.log(finalTasks)
 </script>
 
 <!-- Sprint specific search form-->
@@ -78,23 +80,27 @@
 	}
 }/>
 
+<TaskSelection bind:selection bind:isActive />
+
 
 <main>
 	<!--Svelte each-block. This loops through the array of data and feeds each entry to a "Task" component-->
-    {#each finalTasks as group}
+    {#each finalTasks.tasks as group}
 		<!-- Group can be used to stack cards for example -->
-		<div id="stack">
+		<div id="stack" on:click|preventDefault={()=>{
+				selection = group.taskList;
+				isActive = true
+			}}> 
 			{#each group.taskList as task}
 			<!--Task component, with a copy of the task data.-->
 			<Task bind:task bind:group />
     	{/each}
 		</div>
-		
-    {:else}
-        <!--This "else" is shown if displayTaskList is empty or otherwise not compatible 
-        with the each-block.-->
-        <p>No result...</p>
     {/each}
+	{#each finalTasks.dummy.taskList as task}
+			<Task bind:task bind:relative/>
+
+	{/each}
 </main>
 
 
