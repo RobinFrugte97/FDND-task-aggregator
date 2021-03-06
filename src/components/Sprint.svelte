@@ -40,8 +40,6 @@
 		margin: 0 0 .5rem;
 		font-weight: normal;
 	}
-	
-
 	button {
         border:none;
         width:2rem;
@@ -53,10 +51,10 @@
 		top:.5rem;
 
     }
-	section > :global(div) {
+	section > :global(main) {
 		display:none;
 	}
-	section.active :global(div)  {
+	section.active :global(main)  {
 		display: grid
 	}
 	section :global(form) {
