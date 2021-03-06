@@ -39,6 +39,7 @@
 
 		return finalTasks.tasks = filteredTaskList
 	}
+	
 	function sortSprintTasks(taskList) {
 		// Create an object for each task
 		let groups = taskTitles.map(title => {
@@ -60,6 +61,7 @@
 		groups.forEach(task =>
 			task.taskList.sort((a, b) => a["support-level"] - b["support-level"])
 		)
+
 		let counter = groups.length
 		// Add dummydata
 		while(counter < 12) {

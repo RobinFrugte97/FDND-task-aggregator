@@ -12,18 +12,25 @@
     }
     
     const supportLevels = ["voorbeeld", "imitatie", "experiment", "uitbreiding", "autonoom"]
-    const z = [5,4,3,2,1]
-</script>
 
-<article style="position: {relative ? "relative" : "absolute"}; margin-left: {marginCalculator/2-0.5}em;margin-top: {marginCalculator/4-.25}em;z-index: {z[marginCalculator-1]};">
-    <h4>{task.title}</h4>
-    <p><strong>{task.client}</strong></p>
+    const {url, title, client, semesterName, sprintName} = task
+
+    function sanitizeClassName (className) {
+        return className.replace(/ /g, "-").toLowerCase()
+    }
+
+    const z = [5,4,3,2,1]
+
+<article class={sanitizeClassName(title)} style="position: {relative ? "relative" : "absolute"}; margin-left: {marginCalculator/2-0.5}em;margin-top: {marginCalculator/4-.25}em;z-index: {z[marginCalculator-1]};">
+    <h4>{title}</h4>
+    <p><strong>{client}</strong></p>
     <div>
-        <p>{task.semesterName} /</p>
-        <p> {task.sprintName}</p>
+        <p>{semesterName} /</p>
+        <p> {sprintName}</p>
     </div>
     
     <footer>
+
 
         <p>
             <svg class="task-level {supportLevels[task["support-level"] -1]}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -36,7 +43,6 @@
             </svg>
             <em>{supportLevels[task["support-level"] -1]}</em>
         </p>
-
         <ul>
             <li>
                 <button>
@@ -100,6 +106,20 @@
     article:hover {
         transform: scale(1.025);
     }
+    
+    article.task {
+        filter:grayscale(1) brightness(2.5);
+        opacity:.2;
+    }
+    article.task:hover {
+        transform: scale(1);
+    }
+    article.task * {
+        text-indent:-666em;
+    }
+    article.task svg {
+        opacity:0
+    }
     @media (min-width:40em) {
         a {
             align-self:stretch;
@@ -122,7 +142,7 @@
     div {
         width:100%;
         display:flex;
-        margin: .5rem 0 .25rem;
+        margin: .5rem 0 1.25rem;
     }
     div p:first-child {
         margin-right:.25rem
@@ -130,7 +150,7 @@
     footer {
         background-color: rgba(0,0,0,0.1);
         width:calc(100% + 2rem);
-        margin:1em -1rem -.5rem;
+        margin:auto -1rem -.5rem;
         padding:.5em 1rem 0;
         display:flex;
         justify-content: space-between;
