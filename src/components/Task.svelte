@@ -20,6 +20,7 @@
     }
 
     const z = [5,4,3,2,1]
+</script>
 
 <article class={sanitizeClassName(title)} style="position: {relative ? "relative" : "absolute"}; margin-left: {marginCalculator/2-0.5}em;margin-top: {marginCalculator/4-.25}em;z-index: {z[marginCalculator-1]};">
     <h4>{title}</h4>
