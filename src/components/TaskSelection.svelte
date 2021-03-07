@@ -5,6 +5,7 @@
     export let isActive
 
     let relative = true
+    let isSelection = true
 </script>
 <section class:active={isActive}>
     <button on:click|preventDefault={() => {
@@ -13,7 +14,7 @@
         Close</button>
     <div>
         {#each selection as task}
-            <Task bind:task bind:relative />
+            <Task bind:task bind:relative bind:isSelection />
         {/each}
     </div>
 </section>

@@ -4,6 +4,7 @@
     export let task
     export let group
     export let dummy
+    export let isSelection
 
     const z = [5,4,3,2,1]
     const supportLevels = ["voorbeeld", "imitatie", "experiment", "uitbreiding", "autonoom"]
@@ -16,8 +17,10 @@
         indexCalculator = group.taskList.indexOf(task)+1
     }
     
-    // Calculating stack css. A bit ugly...
-    let stackStyles = `min-width: ${dummy ? "" : "20em"};position: ${dummy ? "relative" : "absolute"}; margin-left:${100-(90 + marginCalculator*2)}% ;width: 90%;margin-top: ${indexCalculator/4-.25}em;z-index: ${z[indexCalculator-1]};`
+    // Calculating stack css. Try not to gag...
+    let stackStyles = 
+    isSelection ? "position: relative; width: 100%; margin-top: 0em; z-index: 1000;" 
+    : `min-width: ${dummy ? "" : "20em"}; position: ${dummy ? "relative" : "absolute"}; margin-left:${100-(90 + marginCalculator*2)}%; width: 90%;margin-top: ${indexCalculator/4-.25}em; z-index: ${z[indexCalculator-1]};`
 
 
 
@@ -111,9 +114,9 @@
     article:hover {
         transform: scale(1.025);
     }
-    article.stack {
-        width: max-content;
-    }
+    /* article.stack {
+
+    } */
     article.task {
         filter:grayscale(1) brightness(2.5);
         opacity:.2;
