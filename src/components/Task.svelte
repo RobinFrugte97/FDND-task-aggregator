@@ -3,17 +3,17 @@
 
     export let task
     export let group
-    export let relative
+    export let dummy
 
+    const z = [5,4,3,2,1]
+    const supportLevels = ["voorbeeld", "imitatie", "experiment", "uitbreiding", "autonoom"]
 
     let marginCalculator
     let indexCalculator
 
     // Calculating stack css. A bit ugly...
-    let stackStyles = `min-width: ${relative ? "" : "20em"};position: ${relative ? "relative" : "absolute"}; margin-left:${100-(90 + marginCalculator*2)}% ;width: 90%;margin-top: ${indexCalculator/4-.25}em;z-index: ${z[indexCalculator-1]};`
+    let stackStyles = `min-width: ${dummy ? "" : "20em"};position: ${dummy ? "relative" : "absolute"}; margin-left:${100-(90 + marginCalculator*2)}% ;width: 90%;margin-top: ${indexCalculator/4-.25}em;z-index: ${z[indexCalculator-1]};`
 
-    const z = [5,4,3,2,1]
-    const supportLevels = ["voorbeeld", "imitatie", "experiment", "uitbreiding", "autonoom"]
 
     if(group) {
         marginCalculator = z.indexOf(group.taskList.indexOf(task)+1)+1
@@ -27,11 +27,9 @@
 
     // Turned off to allow tasks tiles to update on search..
     // const {url, title, client, semesterName, sprintName} = task
-
-    console.log(marginCalculator)
 </script>
 
-<article class={relative ? sanitizeClassName(task.title) : "stack"} style={stackStyles}>
+<article class={dummy ? sanitizeClassName(task.title) : "stack"} style={stackStyles}>
     <h4>{task.title}</h4>
     <p><strong>{task.client}</strong></p>
     <div>

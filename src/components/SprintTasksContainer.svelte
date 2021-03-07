@@ -5,7 +5,7 @@
 
     export let finalTasks
 
-	let relative = true
+	let dummy = true
     let selection = []
 	let isActive = false
 
@@ -29,7 +29,7 @@
 		</div>
     {/each}
 	{#each finalTasks.dummy.taskList as task}
-			<Task bind:task bind:relative/>
+			<Task bind:task bind:dummy/>
 
 	{/each}
 </main>
