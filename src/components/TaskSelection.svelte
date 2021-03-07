@@ -7,7 +7,10 @@
     let relative = true
 </script>
 <section class:active={isActive}>
-    <button on:click|preventDefault={() => isActive = !isActive}>Close</button>
+    <button on:click|preventDefault={() => {
+        isActive = !isActive
+        selection = []}}>
+        Close</button>
     <div>
         {#each selection as task}
             <Task bind:task bind:relative />
