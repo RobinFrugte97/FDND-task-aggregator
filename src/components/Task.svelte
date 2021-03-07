@@ -20,7 +20,7 @@
     // Calculating stack css. Try not to gag...
     let stackStyles = 
     isSelection ? "position: relative; width: 100%; margin-top: 0em; z-index: 1000;" 
-    : `min-width: ${dummy ? "" : "20em"}; position: ${dummy ? "relative" : "absolute"}; margin-left:${100-(90 + marginCalculator*2)}%; width: 90%;margin-top: ${indexCalculator/4-.25}em; z-index: ${z[indexCalculator-1]};`
+    : `min-width: ${dummy ? "" : "20em"}; position: ${dummy ? "relative" : "absolute"}; margin-left: ${100-(90 + marginCalculator*2)}%; width: 90%;margin-top: ${indexCalculator/4-.25}em; z-index: ${z[indexCalculator-1]};`
 
 
 
