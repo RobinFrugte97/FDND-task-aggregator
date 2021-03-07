@@ -10,16 +10,16 @@
 
     let marginCalculator
     let indexCalculator
-
-    // Calculating stack css. A bit ugly...
-    let stackStyles = `min-width: ${dummy ? "" : "20em"};position: ${dummy ? "relative" : "absolute"}; margin-left:${100-(90 + marginCalculator*2)}% ;width: 90%;margin-top: ${indexCalculator/4-.25}em;z-index: ${z[indexCalculator-1]};`
-
-
+    
     if(group) {
         marginCalculator = z.indexOf(group.taskList.indexOf(task)+1)+1
         indexCalculator = group.taskList.indexOf(task)+1
     }
     
+    // Calculating stack css. A bit ugly...
+    let stackStyles = `min-width: ${dummy ? "" : "20em"};position: ${dummy ? "relative" : "absolute"}; margin-left:${100-(90 + marginCalculator*2)}% ;width: 90%;margin-top: ${indexCalculator/4-.25}em;z-index: ${z[indexCalculator-1]};`
+
+
 
     function sanitizeClassName(className) {
         return className.replace(/ /g, "-").toLowerCase()
