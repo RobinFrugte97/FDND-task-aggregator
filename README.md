@@ -6,7 +6,7 @@ Aggregates all tasks and task descriptions from organisation fdnd-task (work in 
 ![](https://user-images.githubusercontent.com/27618252/102607935-66da9e00-4129-11eb-9523-618480764725.png)
 
 <!-- Edit this link with a new deployment after every new release or use your own deployment of choice ;) -->
-[Live link](https://unruffled-mcnulty-9f3556.netlify.app/)
+[Live link](https://tasks.fdnd.nl)
 
 This project is a tool made for FDND-students. Its purpose is to gather all FDND-tasks and display them in a clear overview. 
 
