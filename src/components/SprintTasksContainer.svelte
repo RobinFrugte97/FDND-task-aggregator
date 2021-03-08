@@ -39,6 +39,7 @@
     }
 	#stack {
 		height: 10em;
+		margin-bottom: 1.5em;
 	}
     main {
 		margin: 1rem 0 1rem;
@@ -49,13 +50,18 @@
 			display: grid;
 			grid-template-columns: 1fr 1fr;
 			grid-gap: 1em;
-			
 		}
+		#stack {
+			margin-bottom: 1em;
+		}	
 	}
 
 	@media (min-width: 60em) {
 		main {
 			grid-template-columns: 1fr 1fr 1fr;
 		}
+		#stack {
+			margin-bottom: .5em;
+		}	
 	}
 </style>
