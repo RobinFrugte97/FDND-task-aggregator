@@ -4,13 +4,16 @@
   "description": "Aggregates the all tasks and task descriptions from organisation fdnd-task",
   "main": "index.js",
   "scripts": {
+    "start": "sirv public",
+    
+    "predev": "npm run dataDest & node data.js",
+    "dev": "rollup -c -w",
+
     "predataDest": "rimraf public/data.json",
     "dataDest": "touch public/data.json",
-    "predev": "npm run dataDest & node data.js",
+
     "prebuild": "npm run dataDest & node data.js",
-    "build": "rollup -c",
-    "dev": "rollup -c -w",
-    "start": "sirv public"
+    "build": "rollup -c"
   },
   "repository": {
     "type": "git",

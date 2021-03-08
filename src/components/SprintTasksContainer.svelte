@@ -1,35 +1,32 @@
 <script>
 
-    import TaskSelection from "./TaskSelection.svelte"
     import Task from "./Task.svelte"
+    import TaskStack from "./TaskStack.svelte"
 
     export let finalTasks
 
 	let dummy = true
-    let selection = []
-	let isActive = false
+	let group = false
 
 </script>
-
-<TaskSelection bind:selection bind:isActive />
 
 <main>
 	<!--Svelte each-block. This loops through the array of data and feeds each entry to a "Task" component-->
     {#each finalTasks.tasks as group}
 		<!-- Group can be used to stack cards for example -->
 		<div id="stack" on:click|preventDefault={()=>{
-			selection = group.taskList
-            console.log(selection)
-			isActive = true
-			}}> 
-			{#each group.taskList as task}
-			    <!--Task component, with a copy of the task data.-->
-			    <Task bind:task bind:group />
-    	    {/each}
+			let clickedCard = group.taskList.shift()
+			group.taskList.push(clickedCard)
+			group = {
+				"title": group.title,
+				"taskList": group.taskList
+			}
+		}}> 
+			<TaskStack bind:group />
 		</div>
     {/each}
 	{#each finalTasks.dummy.taskList as task}
-			<Task bind:task bind:dummy/>
+			<Task bind:task bind:dummy bind:group/>
 
 	{/each}
 </main>
