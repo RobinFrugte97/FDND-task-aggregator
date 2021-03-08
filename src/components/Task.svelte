@@ -7,17 +7,39 @@
 
     const z = [5,4,3,2,1]
     const supportLevels = ["voorbeeld", "imitatie", "experiment", "uitbreiding", "autonoom"]
-
+    
     let marginCalculator
     let indexCalculator
+    let widthCalculator
+    let variableWidth 
     
     if(group) {
+        switch (group.taskList.length) {
+        case 1:
+            variableWidth = [100]
+            break;
+        case 2:
+            variableWidth = [98, 98.5]
+            break;
+        case 3:
+            variableWidth = [95, 95.5, 96]
+            break;
+        case 4:
+            variableWidth = [92.5, 93, 93.5, 94]
+            break;
+        case 5:
+            variableWidth = [90, 90.5, 91, 91.5, 92]
+            break;
+        }
+        console.log(variableWidth)
         marginCalculator = z.indexOf(group.taskList.indexOf(task)+1)+1
         indexCalculator = group.taskList.indexOf(task)+1
+        widthCalculator = group.taskList.indexOf(task)
+        console.log(widthCalculator)
     }
     
     // Calculating stack css. Try not to gag...
-    let stackStyles = `min-width: ${dummy ? "" : "16em"}; position: ${dummy ? "relative" : "absolute"}; margin-left: ${100-(90 + marginCalculator*2)}%; width: ${dummy ? "100%" : "90%"};margin-top: ${indexCalculator/4-.25}em; z-index: ${z[indexCalculator-1]};`
+    let stackStyles = `min-width: ${dummy ? "" : "16em"}; position: ${dummy ? "relative" : "absolute"}; margin-left: ${100-(90 + marginCalculator*2)}%; width: ${dummy ? "100" : variableWidth[widthCalculator]}%;margin-top: ${indexCalculator/4-.25}em; z-index: ${z[indexCalculator-1]};`
 
 
 
