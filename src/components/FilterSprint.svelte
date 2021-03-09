@@ -16,17 +16,16 @@
 
 	// Create a list of sprints, with duplicates removed, to be rendered
     function loadSprints(semester, taskList) {
-		let temp = []
 		// Create a list of all tasks of a given semester
         semesterTasks = taskList.filter(task => task.semester === semester)
 		// Create a list of sprint titles. Duplicates to be removed
-        semesterTasks.forEach(sprint => temp.push({"sprint": sprint.sprintName,"index": sprint.sprint}))
+        semesterTasks.forEach(sprint => sprintTitles.push({"sprint": sprint.sprintName,"index": sprint.sprint}))
 
 		// Allow the sprints to be displayed
         showSprints = true
         const seen = new Set();
 
-		let filteredSprints = temp.filter(task => {
+		let filteredSprints = sprintTitles.filter(task => {
 			const duplicate = seen.has(task.index)
 			seen.add(task.index)
 			return !duplicate
