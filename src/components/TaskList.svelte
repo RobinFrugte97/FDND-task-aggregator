@@ -2,9 +2,8 @@
 	import { searchList } from "../../public/js/searchList.js"
 	import { getTaskTitles } from "../../public/js/getTaskTitles.js"
 
-    import Task from "./Task.svelte"
-    import TaskSelection from "./TaskSelection.svelte"
 	import TaskSearch from "./TaskSearch.svelte"
+	import SprintTasksContainer from "./SprintTasksContainer.svelte"
 
     export let semesterTasks
     export let sprint
@@ -23,12 +22,10 @@
 		"title": "Task",
 		"url": "https://github.com/fdnd-task/fdnd-net-presence-example"
 	}
-	let selection = []
-	let isActive = false
-	let relative = true
+	
 	
     // Filter the list of tasks based on the given sprint. 
-    const filter = (value) => filterBySprint(value, semesterTasks)
+    const filter = (value, list) => filterBySprint(value, list)
 	
 	function filterBySprint(value, taskList) {
 		// Filter all semester tasks based on the current sprint name.
@@ -59,9 +56,9 @@
 		})
 		// Sort the task arrays based on support level
 		groups.forEach(task =>
-			task.taskList.sort((a, b) => a["support-level"] - b["support-level"])
+		task.taskList.sort((a, b) => a["support-level"] - b["support-level"])
 		)
-
+		
 		let counter = groups.length
 		// Add dummydata
 		while(counter < 12) {
@@ -70,62 +67,19 @@
 		}
 		return finalTasks.tasks = groups
 	}
-    sortSprintTasks(filter(sprint))
-	console.log(finalTasks)
+    sortSprintTasks(filter(sprint, semesterTasks))
 </script>
 
 <!-- Sprint specific search form-->
 <TaskSearch bind:searchTerm bind:taskTitles on:updateSearch={
 	() => {
+		finalTasks.dummy.taskList = []
 		// The task list of this sprint is automatically updated on "updateSearch"
-		finalTasks = searchList(semesterTasks, searchTerm)
+		finalTasks.tasks = searchList(semesterTasks, searchTerm)
+		sortSprintTasks(filter(sprint, finalTasks.tasks))
 	}
 }/>
 
-<TaskSelection bind:selection bind:isActive />
+<SprintTasksContainer bind:finalTasks />
 
 
-<main>
-	<!--Svelte each-block. This loops through the array of data and feeds each entry to a "Task" component-->
-    {#each finalTasks.tasks as group}
-		<!-- Group can be used to stack cards for example -->
-		<div id="stack" on:click|preventDefault={()=>{
-				selection = group.taskList;
-				isActive = true
-			}}> 
-			{#each group.taskList as task}
-			<!--Task component, with a copy of the task data.-->
-			<Task bind:task bind:group />
-    	{/each}
-		</div>
-    {/each}
-	{#each finalTasks.dummy.taskList as task}
-			<Task bind:task bind:relative/>
-
-	{/each}
-</main>
-
-
-<style>
-	#stack {
-		height: 10em;
-	}
-    main {
-		margin: 1rem 0 1rem;
-		padding-top: .25rem;
-	}
-	@media (min-width: 40em) {
-		main{
-			display: grid;
-			grid-template-columns: 1fr 1fr;
-			grid-gap: 1em;
-			
-		}
-	}
-
-	@media (min-width: 60em) {
-		main {
-			grid-template-columns: 1fr 1fr 1fr;
-		}
-	}
-</style>

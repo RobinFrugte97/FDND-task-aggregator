@@ -3,41 +3,70 @@
 
     export let task
     export let group
-    export let relative
+    export let dummy
 
-
+    const z = [5,4,3,2,1]
+    const supportLevels = ["voorbeeld", "imitatie", "experiment", "uitbreiding", "autonoom"]
+    
     let marginCalculator
+    let indexCalculator
+    let widthCalculator
+    let variableWidth 
+    
     if(group) {
-        marginCalculator = group.taskList.indexOf(task)+1
+        switch (group.taskList.length) {
+        case 1:
+            variableWidth = [100]
+            break;
+        case 2:
+            variableWidth = [97.5, 98]
+            break;
+        case 3:
+            variableWidth = [95, 95.5, 96]
+            break;
+        case 4:
+            variableWidth = [92.5, 93, 93.5, 94]
+            break;
+        case 5:
+            variableWidth = [90, 90.5, 91, 91.5, 92]
+            break;
+        }
+        console.log(variableWidth)
+        marginCalculator = z.indexOf(group.taskList.indexOf(task)+1)+1
+        indexCalculator = group.taskList.indexOf(task)+1
+        widthCalculator = group.taskList.indexOf(task)
+        console.log(widthCalculator)
     }
     
-    const supportLevels = ["voorbeeld", "imitatie", "experiment", "uitbreiding", "autonoom"]
+    // Calculating stack css. Try not to gag...
+    let stackStyles = `min-width: ${dummy ? "" : "16em"}; position: ${dummy ? "relative" : "absolute"}; margin-left: ${100-(90 + marginCalculator*2)}%; width: ${dummy ? "100" : variableWidth[widthCalculator]}%;margin-top: ${indexCalculator/4-.25}em; z-index: ${z[indexCalculator-1]};`
 
-    const {url, title, client, semesterName, sprintName} = task
 
-    function sanitizeClassName (className) {
+
+    function sanitizeClassName(className) {
         return className.replace(/ /g, "-").toLowerCase()
     }
 
-    const z = [5,4,3,2,1]
+
+    // Turned off to allow tasks tiles to update on search..
+    // const {url, title, client, semesterName, sprintName} = task
+
 </script>
 
-<article class={sanitizeClassName(title)} style="position: {relative ? "relative" : "absolute"}; margin-left: {marginCalculator/2-0.5}em;margin-top: {marginCalculator/4-.25}em;z-index: {z[marginCalculator-1]};">
-    <h4>{title}</h4>
-    <p><strong>{client}</strong></p>
+<article class={dummy ? sanitizeClassName(task.title) : "stack"} style={stackStyles}>
+    <h4>{task.title}</h4>
+    <p><strong>{task.client}</strong></p>
     <div>
-        <p>{semesterName} /</p>
-        <p> {sprintName}</p>
+        <p>{task.semesterName} /</p>
+        <p> {task.sprintName}</p>
     </div>
     
     <footer>
 
 
         <p>
-            <svg class="task-level {supportLevels[task["support-level"] -1]}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                viewBox="0 0 44 44">
-                <path id="duplicate" d="M36.5,14.1c1.3,2.3,2,5,2,7.9c0,9.1-7.4,16.5-16.5,16.5S5.5,31.1,5.5,22c0-2.8,0.7-5.5,2-7.9
-"/>
+            <svg class="task-level {supportLevels[task["support-level"] -1]}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 44 44">
+                <path id="duplicate" d="M36.5,14.1c1.3,2.3,2,5,2,7.9c0,9.1-7.4,16.5-16.5,16.5S5.5,31.1,5.5,22c0-2.8,0.7-5.5,2-7.9"/>
                 <path id="experiment" d="M38.5,22c0,9.1-7.4,16.5-16.5,16.5S5.5,31.1,5.5,22"/>
                 <path id="extension" d="M36.3,30.2c-2.8,5-8.2,8.3-14.3,8.3c-6.1,0-11.5-3.4-14.3-8.3"/>
                 <circle id="circle" cx="22" cy="22" r="16.5"/>
@@ -85,12 +114,12 @@
 
 
 <style>
-    a {
+    /* a {
         color:var(--secondary);
     }
     a:hover {
         text-decoration: none;
-    }
+    } */
     article {
         background-color:var(--highlight-primary);
         display: flex;
@@ -101,13 +130,14 @@
         transition:.25s;
         margin-bottom: 1em;
         box-shadow: 3px 3px 26px -13px rgba(0,0,0,0.75);
-        width: 20em;
         cursor: pointer;
     }
     article:hover {
         transform: scale(1.025);
     }
-    
+    /* article.stack {
+
+    } */
     article.task {
         filter:grayscale(1) brightness(2.5);
         opacity:.2;
@@ -122,9 +152,9 @@
         opacity:0
     }
     @media (min-width:40em) {
-        a {
+        /* a {
             align-self:stretch;
-        }
+        } */
         article {
             margin: 0;
         }
