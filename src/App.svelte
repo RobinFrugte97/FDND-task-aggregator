@@ -78,13 +78,14 @@
 		background-color:var(--primary);
 		color:var(--secondary);
 		font-style: normal;
-		border-radius: .4rem;
+		border-radius: var(--radius);
 		padding: 0 .5rem
 	}
 	main {
 		display: flex;
 		flex-direction: column;
 		margin: 2em 0;
+		color:var(--secondary)
 	}
 	@media (min-width: 40em) {
 		header {

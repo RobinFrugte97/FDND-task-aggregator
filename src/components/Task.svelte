@@ -47,8 +47,10 @@
         return className.replace(/ /g, "-").toLowerCase()
     }
 
+
     // Turned off to allow tasks tiles to update on search..
     // const {url, title, client, semesterName, sprintName} = task
+
 </script>
 
 <article class={dummy ? sanitizeClassName(task.title) : "stack"} style={stackStyles}>
@@ -124,7 +126,7 @@
         flex-direction: column;
         align-items: flex-start;
         padding: .5em 1rem;
-        border-radius: .4em;
+        border-radius: var(--radius);;
         transition:.25s;
         margin-bottom: 1em;
         box-shadow: 3px 3px 26px -13px rgba(0,0,0,0.75);
@@ -184,7 +186,7 @@
         display:flex;
         justify-content: space-between;
         align-items: center;
-        border-radius: 0 0 .4rem .4rem;
+        border-radius: 0 0 var(--radius) var(--radius);
     }
     footer p {
         display:flex;
