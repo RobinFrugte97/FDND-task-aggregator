@@ -32,7 +32,7 @@
         white-space:nowrap;
         background-color: var(--primary);
         padding:.25rem;
-        border-radius:.25rem;
+        border-radius:calc(var(--radius) / 2);
         margin-bottom: .25rem;
         color:var(--secondary);
     }

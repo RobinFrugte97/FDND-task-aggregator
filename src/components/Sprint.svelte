@@ -74,7 +74,7 @@
 
 	@media (min-width: 40em) {
 		section {
-			border-radius: .4em;
+			border-radius: var(--radius);
 			margin-bottom: 1rem;
 		}
 	}

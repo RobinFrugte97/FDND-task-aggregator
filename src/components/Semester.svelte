@@ -20,13 +20,13 @@
     h2 {
         background: var(--highlight-secondary);
         padding:0 1rem;
-        border-radius: .4rem;
+        border-radius: var(--radius);
     }
 
     @media (min-width: 40em) {
 		section {
 			padding:1rem 1rem 0;
-            border-radius:.4em;
+            border-radius: var(--radius);
             margin:5rem 0 1rem;
 		}
         h2 {
