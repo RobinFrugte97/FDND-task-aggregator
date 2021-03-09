@@ -56,7 +56,7 @@
 		})
 		// Sort the task arrays based on support level
 		groups.forEach(task =>
-		task.taskList.sort((a, b) => a["support-level"] - b["support-level"])
+		task.taskList.sort((a, b) => b["support-level"] - a["support-level"])
 		)
 		
 		let counter = groups.length
@@ -69,7 +69,6 @@
 	}
     sortSprintTasks(filter(sprint, semesterTasks))
 </script>
-
 <!-- Sprint specific search form-->
 <TaskSearch bind:searchTerm bind:taskTitles on:updateSearch={
 	() => {

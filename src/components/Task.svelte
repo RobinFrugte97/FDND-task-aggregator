@@ -38,8 +38,8 @@
     }
     
     // Calculating stack css. Try not to gag...
-    let stackStyles = `min-width: ${dummy ? "" : "16em"}; position: ${dummy ? "relative" : "absolute"}; margin-left: ${100-(90 + marginCalculator*2)}%; width: ${dummy ? "100" : variableWidth[widthCalculator]}%;margin-top: ${indexCalculator/4-.25}em; z-index: ${z[indexCalculator-1]};`
-
+    let stackStyles = group ? `min-width: ${dummy ? "" : "16em"}; position: ${dummy ? "relative" : "absolute"}; margin-left: ${100-(90 + marginCalculator*2)}%; width: ${dummy ? "100" : variableWidth[widthCalculator]}%;margin-top: ${indexCalculator/4-.25}em; z-index: ${z[indexCalculator-1]};`
+    : "none"
 
 
     function sanitizeClassName(className) {

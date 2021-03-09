@@ -1,8 +1,6 @@
 <script>
 	import Sprint from "../components/Sprint.svelte"
 
-    import { removeDuplicates } from "../../public/js/removeDuplicates.js"
-
 	export let semester
 	export let displayTaskList
 
