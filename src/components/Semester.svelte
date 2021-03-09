@@ -4,6 +4,10 @@
     export let semester
 	export let displayTaskList
 
+    displayTaskList = displayTaskList.filter(task => {
+		return task.semesterName !== undefined
+	})
+
 </script>
 
 <section>

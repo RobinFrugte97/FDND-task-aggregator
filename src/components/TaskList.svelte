@@ -29,7 +29,7 @@
 	
 	function filterBySprint(value, taskList) {
 		// Filter all semester tasks based on the current sprint name.
-		const filteredTaskList = taskList.filter(task => task.sprintName === value)
+		const filteredTaskList = taskList.filter(task => task.sprintName === value.sprint)
 		
 		// Create a list of titles
 		taskTitles = getTaskTitles(filteredTaskList)

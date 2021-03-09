@@ -31,11 +31,10 @@
             variableWidth = [90, 90.5, 91, 91.5, 92]
             break;
         }
-        console.log(variableWidth)
+        
         marginCalculator = z.indexOf(group.taskList.indexOf(task)+1)+1
         indexCalculator = group.taskList.indexOf(task)+1
         widthCalculator = group.taskList.indexOf(task)
-        console.log(widthCalculator)
     }
     
     // Calculating stack css. Try not to gag...
