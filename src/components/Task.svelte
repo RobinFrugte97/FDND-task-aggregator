@@ -19,7 +19,7 @@
             variableWidth = [100]
             break;
         case 2:
-            variableWidth = [98, 98.5]
+            variableWidth = [97.5, 98]
             break;
         case 3:
             variableWidth = [95, 95.5, 96]
