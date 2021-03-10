@@ -11,7 +11,6 @@
 	let dummy = true
 	let group = false
 	let gridTemplate = ""
-
 </script>
 <TaskSelection bind:selection bind:isActive bind:gridTemplate />
 
