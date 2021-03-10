@@ -71,7 +71,7 @@
 		min-width: 15ch;
 		max-width: 30ch;
 		border: 1px solid var(--select-border);
-		border-radius: 0.25em;
+		border-radius: calc(var(--radius) / 2);
 		font-size: 1.25rem;
 		cursor: pointer;
 		line-height: 1.1;

@@ -30,9 +30,12 @@
 		// A list of semester names to be displayed.
 		semesters = getSemesterTitles(taskList)
 
+		// Remove strings from semester array
+		semesters = semesters.filter(semester => {return typeof semester !== 'string'})
+
 		// Sort semesters in numerical order
 		semesters.sort((a, b) => a-b)
-
+		
 		// Copy the array of tasks, complete with semester and sprint name to an array that is to be displayed.
 		displayTaskList = searchTaskList
 		sprintFilters = createSprintFilters(displayTaskList)
@@ -78,13 +81,14 @@
 		background-color:var(--primary);
 		color:var(--secondary);
 		font-style: normal;
-		border-radius: .4rem;
+		border-radius: var(--radius);
 		padding: 0 .5rem
 	}
 	main {
 		display: flex;
 		flex-direction: column;
 		margin: 2em 0;
+		color:var(--secondary)
 	}
 	@media (min-width: 40em) {
 		header {

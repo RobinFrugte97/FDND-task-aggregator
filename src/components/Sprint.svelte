@@ -12,7 +12,7 @@
 
 <section class:active={isActive}>
     <h3>
-        Sprint: <strong>{ sprint }</strong>
+        Sprint: <strong>{ sprint.sprint }</strong>
         <button on:click|preventDefault={() => isActive = !isActive}>
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-down" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -40,8 +40,6 @@
 		margin: 0 0 .5rem;
 		font-weight: normal;
 	}
-	
-
 	button {
         border:none;
         width:2rem;
@@ -53,10 +51,10 @@
 		top:.5rem;
 
     }
-	section > :global(div) {
+	section > :global(main) {
 		display:none;
 	}
-	section.active :global(div)  {
+	section.active :global(main)  {
 		display: grid
 	}
 	section :global(form) {
@@ -76,7 +74,7 @@
 
 	@media (min-width: 40em) {
 		section {
-			border-radius: .4em;
+			border-radius: var(--radius);
 			margin-bottom: 1rem;
 		}
 	}
