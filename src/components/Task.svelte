@@ -46,10 +46,6 @@
         return className.replace(/ /g, "-").toLowerCase()
     }
 
-
-    // Turned off to allow tasks tiles to update on search..
-    // const {url, title, client, semesterName, sprintName} = task
-
 </script>
 
 <article class={dummy ? sanitizeClassName(task.title) : "stack"} style={stackStyles}>

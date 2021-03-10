@@ -1,6 +1,9 @@
 name: Deploy
 
 on:
+  schedule:
+    # run daily at 1:00 UTC format: minute hour day month weekday
+    - cron:  '* 1 * * *'
   push:
     branches:
     - master
