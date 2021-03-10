@@ -65,7 +65,7 @@
 		main{
 			display: grid;
 			grid-template-columns: 1fr 1fr;
-			grid-gap: 1em;
+			grid-gap: 2em;
 		}
 		#stack {
 			margin-bottom: 1em;
