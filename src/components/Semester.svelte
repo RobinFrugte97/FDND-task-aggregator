@@ -7,7 +7,6 @@
     displayTaskList = displayTaskList.filter(task => {
 		return task.semesterName !== undefined
 	})
-
 </script>
 
 <section>
