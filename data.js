@@ -44,7 +44,7 @@ graphqlWithAuth(`{
         ...fm(task.description.text).attributes,
         repository: task.name,
         topics: task.repositoryTopics.edges.map(edge => edge.node.topic.name),
-        url: task.url
+        url: `${task.url}/blob/master/docs/INSTRUCTIONS.md`
       })
     })
   })
