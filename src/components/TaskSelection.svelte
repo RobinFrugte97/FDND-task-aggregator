@@ -29,7 +29,7 @@
     }
     div {
         display: grid;
-        grid-gap: 2em;
+        grid-gap: 1em;
     }
     section {
         position: fixed;
