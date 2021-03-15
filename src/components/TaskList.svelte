@@ -41,7 +41,8 @@
 		// Create an object for each task
 		let groups = taskTitles.map(title => {
 			return {
-				"title": title,
+				"title": title.title,
+				"client": title.client,
 				"taskList": []
 			}
 		})
@@ -49,7 +50,7 @@
 		// Put all tasks in the correct task array
 		taskList.forEach(task => {
 			groups.forEach(group => {
-				if(group.title == task.title) {
+				if(group.title == task.title && group.client == task.client) {
 					group.taskList.push(task)
 				}
 			})
