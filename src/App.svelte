@@ -44,11 +44,14 @@
 		Add difficulty property to the taskList
 		*/
 		addDifficulty(displayTaskList)
+
+		// *** For testing purposes, remove once "Huisstijl CMD" has been removed as a title
 		displayTaskList.forEach(task => {
 			if(task.title == "Huisstijl CMD") {
 				task.title = task.title.slice(0, -4)
 			}
 		})
+		// *** For testing purposes, remove once "Huisstijl CMD" has been removed as a title
 	})
 </script>
 
