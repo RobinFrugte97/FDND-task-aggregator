@@ -31,7 +31,6 @@
 		filteredSprints.sort((a, b) => {
 			return a.index - b.index
 		})
-        console.log(filteredSprints)
 		sprintTitles = filteredSprints
 		// Return a list of sprint titles with duplicates removed.
         // return sprintTitles = removeDuplicates(temp)
