@@ -21,7 +21,6 @@
 		<!-- Group can be used to stack cards for example -->
 		<div id="stack" on:click|preventDefault={()=>{
 			selection = group.taskList;
-			console.log(selection)
 			isActive = true
 			if(selection.length == 2) {
 				gridTemplate = "grid-template-columns: 1fr 1fr;"
