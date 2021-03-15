@@ -54,11 +54,11 @@ graphqlWithAuth(`{
   .finally(() => {
     /* Write the GraphQL result to a json-file, to be fetched inside the App.svelte component. */
     fs.writeFile('public/data.json', 
-                  JSON.stringify(taskList),
-                  function (err) {
-                    if (err) {
-                      console.error('Crap happens');
-                    }
-                  }
+      JSON.stringify(taskList),
+      function (err) {
+        if (err) {
+          console.error('Crap happens');
+        }
+      }
     );
   })
