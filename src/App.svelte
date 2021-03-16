@@ -2,7 +2,7 @@
 	import { onMount } from "svelte"
 	import { sortList } from "../public/js/sorting/sortList.js"
 	import { getSemesterSprintName } from "../public/js/utils/getSemesterSprintName.js"
-	import { addDifficulty } from '../public/js/sorting/addDifficulty.js'
+	import { addDifficulty } from '../public/js/utils/addDifficulty.js'
     import { getSemesterTitles } from "../public/js/utils/getSemesterTitles.js"
   
 	import TaskSort from "./components/TaskSort.svelte"
