@@ -1,5 +1,4 @@
 <script>
-
     import Task from "./Task.svelte"
 	import TaskSelection from "./TaskSelection.svelte"
     import TaskStack from "./TaskStack.svelte"

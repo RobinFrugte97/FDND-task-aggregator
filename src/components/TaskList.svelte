@@ -1,6 +1,6 @@
 <script>
-	import { searchList } from "../../public/js/searchList.js"
-	import { getTaskTitles } from "../../public/js/getTaskTitles.js"
+	import { searchList } from "../../public/js/searching/searchList.js"
+	import { getTaskTitles } from "../../public/js/utils/getTaskTitles.js"
 
 	import TaskSearch from "./TaskSearch.svelte"
 	import SprintTasksContainer from "./SprintTasksContainer.svelte"
@@ -10,9 +10,11 @@
 	export let semester
 	export let displayTaskList
 
-    let finalTasks = {tasks: [], dummy: {"title": "Task", "taskList": []}}
     let searchTerm = ""
 	let taskTitles = []
+
+	// finalTasks is an object containing the final, sorted, version of the tasklist.
+    let finalTasks = {tasks: [], dummy: {"title": "Task", "taskList": []}}
 	let dummyData = {
 		"client": "FDND",
 		"semesterName": displayTaskList.filter(task => task.semester === semester)[0].semesterName,
@@ -39,7 +41,7 @@
 	
 	function sortSprintTasks(taskList) {
 		// Create an object for each task
-		let groups = taskTitles.map(title => {
+		let stacks = taskTitles.map(title => {
 			return {
 				"title": title.title,
 				"client": title.client,
@@ -49,25 +51,27 @@
 		
 		// Put all tasks in the correct task array
 		taskList.forEach(task => {
-			groups.forEach(group => {
-				if(group.title == task.title && group.client == task.client) {
-					group.taskList.push(task)
+			stacks.forEach(stack => {
+				if(stack.title == task.title && stack.client == task.client) {
+					stack.taskList.push(task)
 				}
 			})
 		})
 		// Sort the task arrays based on support level
-		groups.forEach(task =>
+		stacks.forEach(task =>
 		task.taskList.sort((a, b) => b["support-level"] - a["support-level"])
 		)
 		
-		let counter = groups.length
-		// Add dummydata
+		let counter = stacks.length
+		// Add dummydata until the total amount of tasks in a group is 12.
 		while(counter < 12) {
 			counter++
 			finalTasks.dummy.taskList.push(dummyData)
 		}
-		return finalTasks.tasks = groups
+		return finalTasks.tasks = stacks
 	}
+
+	// Fire function to begin sorting the tasks to sprints.
     sortSprintTasks(filter(sprint, semesterTasks))
 </script>
 <!-- Sprint specific search form-->
@@ -76,6 +80,7 @@
 		finalTasks.dummy.taskList = []
 		// The task list of this sprint is automatically updated on "updateSearch"
 		finalTasks.tasks = searchList(semesterTasks, searchTerm)
+		// Refire sort function with the filtered tasklist based on search input.
 		sortSprintTasks(filter(sprint, finalTasks.tasks))
 	}
 }/>

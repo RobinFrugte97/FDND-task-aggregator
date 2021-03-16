@@ -38,6 +38,7 @@ export default {
 	},
 	plugins: [
 		svelte({
+			include: 'src/**/*.svelte',
 			compilerOptions: {
 				// enable run-time checks when not in production
 				dev: !production

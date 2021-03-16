@@ -1,7 +1,7 @@
-import { sortByTaskOrder } from "../js/sortByTaskOrder.js" 
-import { sortByReverseTaskOrder } from "./sortByReverseTaskOrder.js" 
+import { sortByTaskOrder } from "./sortByTaskOrder.js"
+import { sortByReverseTaskOrder } from "./sortByReverseTaskOrder.js"
 import { sortByAlphabeticalOrder } from "./sortByAlphabeticalOrder.js" 
-import { sortByReverseAlphabeticalOrder } from "./sortByReverseAlphabeticalOrder.js" 
+import { sortByReverseAlphabeticalOrder } from "./sortByReverseAlphabeticalOrder.js"
 import { sortByDifficultyOrder } from "./sortByDifficultyOrder.js"
 import { sortByReverseDifficultyOrder } from "./sortByReverseDifficultyOrder.js"
 
