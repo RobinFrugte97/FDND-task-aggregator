@@ -44,7 +44,7 @@ graphqlWithAuth(`{
         ...fm(task.description.text).attributes,
         repository: task.name,
         topics: task.repositoryTopics.edges.map(edge => edge.node.topic.name),
-        url: task.url
+        url: `${task.url}/blob/master/docs/INSTRUCTIONS.md`
       })
     })
   })
@@ -54,11 +54,11 @@ graphqlWithAuth(`{
   .finally(() => {
     /* Write the GraphQL result to a json-file, to be fetched inside the App.svelte component. */
     fs.writeFile('public/data.json', 
-                  JSON.stringify(taskList),
-                  function (err) {
-                    if (err) {
-                      console.error('Crap happens');
-                    }
-                  }
+      JSON.stringify(taskList),
+      function (err) {
+        if (err) {
+          console.error('Crap happens');
+        }
+      }
     );
   })

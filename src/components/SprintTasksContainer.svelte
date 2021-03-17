@@ -4,7 +4,7 @@
     import TaskStack from "./TaskStack.svelte"
 
     export let finalTasks
-	export let isActive
+	export let isActive = false
 	export let selection = []
 
 	let dummy = true

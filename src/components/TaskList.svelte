@@ -5,16 +5,16 @@
 	import TaskSearch from "./TaskSearch.svelte"
 	import SprintTasksContainer from "./SprintTasksContainer.svelte"
 
-    export let semesterTasks
-    export let sprint
+  export let semesterTasks
+  export let sprint
 	export let semester
 	export let displayTaskList
 
-    let searchTerm = ""
+  let searchTerm = ""
 	let taskTitles = []
 
 	// finalTasks is an object containing the final, sorted, version of the tasklist.
-    let finalTasks = {tasks: [], dummy: {"title": "Task", "taskList": []}}
+  let finalTasks = {tasks: [], dummy: {"title": "Task", "taskList": []}}
 	let dummyData = {
 		"client": "FDND",
 		"semesterName": displayTaskList.filter(task => task.semester === semester)[0].semesterName,
@@ -27,7 +27,7 @@
 	
 	
     // Filter the list of tasks based on the given sprint. 
-    const filter = (value, list) => filterBySprint(value, list)
+  const filter = (value, list) => filterBySprint(value, list)
 	
 	function filterBySprint(value, taskList) {
 		// Filter all semester tasks based on the current sprint name.
