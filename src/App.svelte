@@ -3,8 +3,7 @@
 	import { sortList } from "./helpers/sortList.js"
 	import { getSemesterSprintName } from "./helpers/getSemesterSprintName.js"
 	import { addDifficulty } from './helpers/addDifficulty.js'
-    import { getSemesterTitles } from "./helpers/getSemesterTitles.js"
-	import { createSprintFilters } from "./helpers/createSprintFilters.js"
+  import { getSemesterTitles } from "./helpers/getSemesterTitles.js"
   
 	import TaskSort from "./components/TaskSort.svelte"
 	import FilterSemester from "./components/FilterSemester.svelte"	
@@ -14,10 +13,7 @@
 	let displayTaskList = [] // Copy of the data that is used to render the tasks.
 	let searchTaskList = [] // Copy of the data to be used in the search
 	let selected = {}
-	let taskDifficulty = 0
 	let semesters = []
-	let sprintFilters = []
-	let sprintFilter = ''
   
 	/*When App.svelte mounts, this function to fetch the data will run.*/
 	onMount(async () => {
@@ -38,7 +34,6 @@
 		
 		// Copy the array of tasks, complete with semester and sprint name to an array that is to be displayed.
 		displayTaskList = searchTaskList
-		sprintFilters = createSprintFilters(displayTaskList)
 
 		/*
 		Add difficulty property to the taskList

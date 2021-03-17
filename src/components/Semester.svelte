@@ -4,6 +4,8 @@
     export let semester
 	export let displayTaskList
 
+
+    // Make sure all tasks have a semesterName value.
     displayTaskList = displayTaskList.filter(task => {
 		return task.semesterName !== undefined
 	})
