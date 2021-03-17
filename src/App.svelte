@@ -1,10 +1,10 @@
 <script>
 	import { onMount } from "svelte"
-	import { sortList } from "../public/js/sortList.js"
-	import { getSemesterSprintName } from "../public/js/getSemesterSprintName.js"
-	import { addDifficulty } from '../public/js/addDifficulty.js'
-    import { getSemesterTitles } from "../public/js/getSemesterTitles.js"
-	import { createSprintFilters } from "../public/js/createSprintFilters.js"
+	import { sortList } from "./helpers/sortList.js"
+	import { getSemesterSprintName } from "./helpers/getSemesterSprintName.js"
+	import { addDifficulty } from './helpers/addDifficulty.js'
+    import { getSemesterTitles } from "./helpers/getSemesterTitles.js"
+	import { createSprintFilters } from "./helpers/createSprintFilters.js"
   
 	import TaskSort from "./components/TaskSort.svelte"
 	import FilterSemester from "./components/FilterSemester.svelte"	

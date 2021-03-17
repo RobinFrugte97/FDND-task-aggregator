@@ -1,4 +1,4 @@
-import { removeDuplicates } from '../js/removeDuplicates.js'
+import { removeDuplicates } from './removeDuplicates.js'
 
 export function createSprintFilters(taskList) {
 	let sprints = []

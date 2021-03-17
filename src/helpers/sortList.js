@@ -1,4 +1,4 @@
-import { sortByTaskOrder } from "../js/sortByTaskOrder.js" 
+import { sortByTaskOrder } from "./sortByTaskOrder.js" 
 import { sortByReverseTaskOrder } from "./sortByReverseTaskOrder.js" 
 import { sortByAlphabeticalOrder } from "./sortByAlphabeticalOrder.js" 
 import { sortByReverseAlphabeticalOrder } from "./sortByReverseAlphabeticalOrder.js" 
