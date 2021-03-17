@@ -1,9 +1,9 @@
 <script>
 	import { onMount } from "svelte"
-	import { sortList } from "./helpers/sortList.js"
-	import { getSemesterSprintName } from "./helpers/getSemesterSprintName.js"
-	import { addDifficulty } from './helpers/addDifficulty.js'
-  import { getSemesterTitles } from "./helpers/getSemesterTitles.js"
+	import { sortList } from "./helpers/sorting/sortList.js"
+	import { getSemesterSprintName } from "./helpers/utils/getSemesterSprintName.js"
+	import { addDifficulty } from './helpers/utils/addDifficulty.js'
+  	import { getSemesterTitles } from "./helpers/utils/getSemesterTitles.js"
   
 	import TaskSort from "./components/TaskSort.svelte"
 	import FilterSemester from "./components/FilterSemester.svelte"	
