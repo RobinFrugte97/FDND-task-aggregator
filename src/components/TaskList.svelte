@@ -1,6 +1,6 @@
 <script>
-	import { searchList } from "../../public/js/searching/searchList.js"
-	import { getTaskTitles } from "../../public/js/utils/getTaskTitles.js"
+	import { searchList } from "../helpers/searching/searchList.js"
+	import { getTaskTitles } from "../helpers/utils/getTaskTitles.js"
 
 	import TaskSearch from "./TaskSearch.svelte"
 	import SprintTasksContainer from "./SprintTasksContainer.svelte"
