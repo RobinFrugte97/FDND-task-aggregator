@@ -1,3 +1,5 @@
+### Repo cloned from https://github.com/fdnd/task-aggregation for my portfolio website. All rights reserved to [FDND](https://fdnd.nl/).
+
 # task-aggregation
 Aggregates all tasks and task descriptions from organisation fdnd-task (work in progress)
 
